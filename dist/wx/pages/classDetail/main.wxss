@@ -1,0 +1,36 @@
+@import "../../common/vendor.wxss";
+
+.container.data-v-25a54f50 {
+  margin: 0 20rpx;
+}
+.btn-group.data-v-25a54f50 {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  width: 100%;
+}
+.btn-group .btn.data-v-25a54f50 {
+  height: 80rpx;
+  flex: 1;
+  border-style: solid;
+  border-color: #fff;
+  border-width: 1rpx;
+  line-height: 80rpx;
+  margin-top: 20rpx;
+}
+.student-list.data-v-25a54f50 {
+  margin-top: 20rpx;
+  width: 100%;
+}
+.tips-title .text2.data-v-25a54f50 {
+  flex: 1;
+  text-align: right;
+}
+.student-avatar.data-v-25a54f50 {
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 5rpx;
+}
+.td.data-v-25a54f50 {
+  flex: 1;
+}

@@ -1,0 +1,157 @@
+@import "../../common/vendor.wxss";
+
+.questions.data-v-3819d633 {
+  margin-left: 10rpx;
+  margin-top: 20rpx;
+}
+.cartInfo.data-v-3819d633 {
+  height: 50rpx;
+  line-height: 50rpx;
+  border-bottom-width: 1rpx;
+  border-bottom-style: solid;
+  border-bottom-color: #f2f2f2;
+}.question {
+  border-bottom-width: 1rpx;
+  border-bottom-style: solid;
+  border-bottom-color: #f2f2f2;
+  padding-bottom: 20rpx;
+}
+
+.question-title {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.question-title .tips {
+  content: "";
+  display: inline-block;
+  width: 16rpx;
+  height: 32rpx;
+  background-color: #409eff;
+}
+
+.question-title .text {
+  font-size: 28rpx;
+  padding-left: 10rpx;
+}
+
+.select-question {
+  margin-top: 20rpx;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.select-btn {
+  width: 320rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+}
+
+.show-detail {
+  font-size: 28rpx;
+  color: #409eff;
+}
+
+.question-detail {
+  margin: 20rpx;
+}
+
+.question-subtitle {
+  font-size: 28rpx;
+  line-height: 36rpx;
+}
+
+.qs-content {
+  margin-top: 20rpx;
+}
+
+.onplay {
+  color: #409eff;
+}
+
+.info-content {
+  font-size: 24rpx;
+  margin-top: 20rpx;
+}
+
+.items {
+  margin-top: 20rpx;
+}
+
+.item-content {
+  font-size: 24rpx;
+}
+
+.item-answer {
+  font-size: 24rpx;
+}
+
+.option-img {
+  height: 200rpx;
+  width: 50%;
+}
+
+.question-prediv {
+  margin-top: 20rpx;
+}
+
+.info-img {
+  width: 100%;
+}
+
+.check-group {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.checkbox {
+  display: flex;
+  display: -webkit-flex;
+}
+
+.icon-laba {
+  margin-left: 10rpx;
+}
+
+.words {
+  min-width: 100rpx;
+}
+.checkbox-item.data-v-70e48e2b {
+  overflow: scroll;
+  display: flex;
+  display: -webkit-flex;
+  margin-top: 20rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 300rpx;
+}
+.checkbox-item.data-v-a8763ed2 {
+  overflow: scroll;
+  display: flex;
+  display: -webkit-flex;
+  margin-top: 20rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.picimg_cl.data-v-fae9ec30 {
+  width: 100%;
+}
+.picimg_cl.data-v-4615ab93 {
+  width: 100%;
+}

@@ -1,0 +1,149 @@
+.weui-btn{
+  border-radius: 0
+}
+button[type=primary] {
+  color:#FFFFFF;
+  background-color:#409eff;
+  border-radius: 0
+}
+button::after {
+  border-radius: 0;
+}
+.button-hover[type=primary] {
+  color:rgba(255, 255, 255, 0.6);
+  background-color:#409eff;
+}
+button[type=primary][plain] {
+  color:#409eff;
+  border:1px solid #409eff;
+  background-color:transparent;
+}
+button.plain{
+  color:#409eff;
+  border:1px solid #409eff;
+  background-color:transparent;
+  border-radius: 0
+}
+.button-hover[type=primary][plain] {
+  color:rgba(0, 158, 250, 0.6);
+  border-color:rgba(0, 158, 250, 0.6);
+  background-color:transparent;
+}
+button[disabled] {
+  color:#fff;
+}
+button[disabled][type=primary] {
+  background-color:#9f9f9f;
+}
+button[disabled][type=primary][plain] {
+  background-color:#9f9f9f;
+  border:1px solid #9f9f9f;
+}
+.c-gray{
+  color: #9f9f9f;
+}
+.c-primary{
+  color: #409eff;
+}
+.c-red{
+  color: red;
+}
+.c-green{
+  color: green;
+}
+page{
+  display: flex;display: -webkit-flex;
+  flex-direction: column;
+  height: 100%;
+}
+.flex1{
+  flex: 1
+}
+.flex-center{
+  display: flex;display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
+}
+.f16{
+  font-size: 16px;
+}
+.f14{
+  font-size: 14px;
+}
+.f12{
+  font-size: 12px;
+}
+.ml5{
+ margin-left: 5px;
+}
+.ml10{
+  margin-left: 10px;
+}
+.mr10{
+  margin-right: 10px;
+}
+.mt5{
+  margin-top: 5px;
+}
+.mt2{
+  margin-top: 2px;
+}
+.mt10{
+  margin-top: 10px;
+}
+.mb10{
+  margin-bottom: 10px;
+}
+.pt10{
+  padding-top: 10px;
+}
+.mt20{
+  margin-top: 20px;
+}
+.mt40{
+  margin-top: 40px;
+}
+.table{
+  width: 100%;
+  text-align: center;
+}
+.thead{
+  height: 30px;
+  font-size: 14px;
+  color: #999999;
+}
+.thead .td{
+  background-color: #f3f6fa;
+  height: 30px;
+  line-height: 30px;
+}
+.tr{
+  display: flex;display: -webkit-flex;
+}
+.td{
+  border-bottom: 1px solid #ebeef5;
+}
+.tbody{
+  font-size: 13px;
+}
+.tbody .td{
+  height: 30px;
+  line-height: 30px;
+}
+.tips-title{
+  display: flex;display: -webkit-flex;
+  flex-direction: row;
+  align-items: center;
+}
+.tips-title .tips{
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background-color: #409eff;
+}
+.tips-title .text{
+  font-size: 14px;
+  padding-left: 5px;
+}
+.clear{ clear:both}

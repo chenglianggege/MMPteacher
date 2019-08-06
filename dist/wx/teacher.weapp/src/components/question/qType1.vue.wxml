@@ -1,0 +1,32 @@
+<template name="6037d31e">
+  <view class="_div data-v-1cd13037 question">
+    <view class="_div data-v-1cd13037 question-title">
+      <view class="_div data-v-1cd13037 tips"></view><text class="_text data-v-1cd13037 text">{{question.qs_title}}</text>
+    </view>
+    <view class="_div data-v-1cd13037 select-question" hidden="{{!(showCart)}}">
+      <view class="_div data-v-1cd13037 flex1"><button class="_button data-v-1cd13037 weui-btn select-btn {{[!selStat ? 'plain' : '']}}" type="primary" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+          {{!selStat ? '选择' : (selStat === 1 ? '部分选' : '已选择' )}}
+        </button></view>
+      <view class="_div data-v-1cd13037 flex1 flex-center"><text class="_text data-v-1cd13037 show-detail" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">{{showDetail ? '收起详情↑' : '查看详情↓'}}</text></view>
+    </view>
+    <view class="_div data-v-1cd13037 question-detail" hidden="{{!(!showCart || showDetail)}}">
+      <view class="_div data-v-1cd13037 question-subtitle">{{question.qs_content}}</view>
+      <view class="_div data-v-1cd13037 question-prediv">
+        <view class="_div data-v-1cd13037 qs-info" wx:key="info.info_id" key="{{info.info_id}}" wx:for="{{question.info}}" wx:for-index="infoIdx" wx:for-item="info">
+          <view class="_div data-v-1cd13037 items" wx:key="item.item_id" key="{{item.item_id}}" wx:for="{{info.items}}" wx:for-index="itemIdx" wx:for-item="item">
+            <view class="_div data-v-1cd13037 item-content">{{item.item_content}}
+              <icon wx:if="{{item.source_content}}" class="_icon data-v-1cd13037 iconfont icon-laba {{[playUrl == item.source_content ? 'onplay' : '']}}" bindtap="handleProxy" data-eventid="{{'2_'+infoIdx+'-'+itemIdx}}" data-comkey="{{$k}}"></icon>
+            </view>
+            <view class="_div data-v-1cd13037 item-answer" wx:key="answer.answer_id" key="{{answer.answer_id}}" wx:for="{{item.answers}}" wx:for-index="index" wx:for-item="answer">
+              {{options[index]}}.<label class="_span data-v-1cd13037 f14"> {{answer.answer_content}} </label>
+              <image class="_img data-v-1cd13037 option-img" mode="aspectFit" wx:if="{{answer.source_content}}" src="{{STATIC_URL + answer.source_content}}"></image>
+              <icon class="_icon data-v-1cd13037 iconfont {{answer.answer_is_right == 1 ? 'icon-check' : 'icon-close'}}"></icon>
+            </view>
+            <view class="_div data-v-1cd13037 item-answer">准备时间：{{item.item_prepare_second}}秒 答题时间：{{item.item_answer_second}}秒 题目满分：{{item.item_score}}分</view>
+            <view class="_div data-v-1cd13037 item-answer c-primary" wx:if="{{showAnswer}}" bindtap="handleProxy" data-eventid="{{'3_'+infoIdx+'-'+itemIdx}}" data-comkey="{{$k}}">查看学生回答→</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,111 @@
+<import src="/teacher.weapp/src/components/textToFixed.vue.wxml" />
+<import src="/teacher.weapp/src/components/listFooter.vue.wxml" /><template name="e81fe42c">
+  <view class="_div data-v-4e45b0a0 container" wx:if="{{summary}}">
+    <view style="flex: 0 0 auto;" class="_div data-v-4e45b0a0">
+      <view class="_div data-v-4e45b0a0 group-title pt10">
+        <view class="_div data-v-4e45b0a0 tips"></view><text class="_text data-v-4e45b0a0 f14 ml5">题目序号</text>
+        <view style="text-align: right;flex: 1" class="_div data-v-4e45b0a0"><text style="color: #409eff" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_text data-v-4e45b0a0">{{showQsList ? '收起↑' : '显示↓'}}</text></view>
+      </view>
+      <view class="_div data-v-4e45b0a0 table qs-list mt10" hidden="{{!(showQsList)}}">
+        <view class="_div data-v-4e45b0a0 thead">
+          <view class="_div data-v-4e45b0a0 tr">
+            <view class="_div data-v-4e45b0a0 td qs-no">序号</view>
+            <view class="_div data-v-4e45b0a0 td qs-title">题目名称</view>
+          </view>
+        </view>
+        <view class="_div data-v-4e45b0a0 tbody">
+          <view class="_div data-v-4e45b0a0 tr" wx:key="idx" key="{{idx}}" wx:for="{{summary.paper_nav}}" wx:for-index="idx" wx:for-item="qsInfo">
+            <view class="_div data-v-4e45b0a0 td qs-no">{{idx + 1}}</view>
+            <view class="_div data-v-4e45b0a0 td qs-title">{{qsInfo.title}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="_div data-v-4e45b0a0 tab">
+        <view class="_div data-v-4e45b0a0 navbar">
+          <view class="_div data-v-4e45b0a0 navbar-item {{[currentIdx == 0 ? 'item_on' : '']}}" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">
+            <view class="_view data-v-4e45b0a0 navbar-title">整体情况</view>
+          </view>
+          <view class="_div data-v-4e45b0a0 navbar-item {{[currentIdx == 1 ? 'item_on' : '']}}" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">
+            <view class="_view data-v-4e45b0a0 navbar-title">学生成绩</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-4e45b0a0 tab-items">
+      <view class="_div data-v-4e45b0a0 summary" wx:if="{{currentIdx ==0}}">
+        <view class="_div data-v-4e45b0a0 group-title mt10">
+          <view class="_div data-v-4e45b0a0 tips"></view><text class="_text data-v-4e45b0a0 f14 ml5">试题得分情况（统计范围：已完成作业的学生）</text>
+        </view>
+        <view class="_div data-v-4e45b0a0 table mt10 qs-list">
+          <view class="_div data-v-4e45b0a0 thead">
+            <view class="_div data-v-4e45b0a0 tr">
+              <view class="_div data-v-4e45b0a0 td qs-no">序号</view>
+              <view class="_div data-v-4e45b0a0 td flex1">满分值</view>
+              <view class="_div data-v-4e45b0a0 td flex1">平均分</view>
+              <view class="_div data-v-4e45b0a0 td flex1">得分率</view>
+              <view class="_div data-v-4e45b0a0 td flex1">最高分</view>
+              <view class="_div data-v-4e45b0a0 td flex1">最低分</view>
+            </view>
+          </view>
+          <view class="_div data-v-4e45b0a0 tbody">
+            <view class="_div data-v-4e45b0a0 tr" wx:key="idx" key="{{idx}}" wx:for="{{summary.paper_nav}}" wx:for-index="idx" wx:for-item="qsInfo">
+              <view class="_div data-v-4e45b0a0 td qs-no">{{idx + 1}}</view>
+              <view class="_div data-v-4e45b0a0 td flex1"><template data="{{...$root[$kk+'0_'+idx], $root}}" is="1316dc2e"></template></view>
+              <view class="_div data-v-4e45b0a0 td flex1"><template data="{{...$root[$kk+'1_'+idx], $root}}" is="1316dc2e"></template></view>
+              <view class="_div data-v-4e45b0a0 td flex1"><template data="{{...$root[$kk+'2_'+idx], $root}}" is="1316dc2e"></template>%</view>
+              <view class="_div data-v-4e45b0a0 td flex1"><template data="{{...$root[$kk+'3_'+idx], $root}}" is="1316dc2e"></template></view>
+              <view class="_div data-v-4e45b0a0 td flex1"><template data="{{...$root[$kk+'4_'+idx], $root}}" is="1316dc2e"></template></view>
+            </view>
+          </view>
+        </view>
+        <view class="_div data-v-4e45b0a0 group-title mt10">
+          <view class="_div data-v-4e45b0a0 tips"></view><text class="_text data-v-4e45b0a0 f14 ml5">学生得分分布情况（统计范围：已完成作业的学生）</text>
+        </view>
+        <view class="_div data-v-4e45b0a0 table mt10 score-range">
+          <view class="_div data-v-4e45b0a0 thead">
+            <view class="_div data-v-4e45b0a0 tr">
+              <view class="_div data-v-4e45b0a0 td flex1">分数段</view>
+              <view class="_div data-v-4e45b0a0 td flex1">人数</view>
+              <view class="_div data-v-4e45b0a0 td flex1">百分比</view>
+            </view>
+          </view>
+          <view class="_div data-v-4e45b0a0 tbody">
+            <view class="_div data-v-4e45b0a0 tr" wx:key="idx" key="{{idx}}" wx:for="{{summary.homework_info.distribution}}" wx:for-index="idx" wx:for-item="num">
+              <view class="_div data-v-4e45b0a0 td flex1">{{idx}}</view>
+              <view class="_div data-v-4e45b0a0 td flex1">{{num}}</view>
+              <view class="_div data-v-4e45b0a0 td flex1"><template data="{{...$root[$kk+'5_'+idx], $root}}" is="1316dc2e"></template>%</view>
+            </view>
+          </view>
+        </view>
+        <view wx:if="{{ec.show}}" style="display: flex;display: -webkit-flex;justify-content: center;align-items: center ;width: 100%;height: 250px" class="_div data-v-4e45b0a0">
+          <ec-canvas style="width: 100%;height: 100%;display: block;" ec="{{ec}}" id="mychart-dom-bar" canvas-id="mychart-bar" class="_ec-canvas data-v-4e45b0a0"></ec-canvas>
+        </view> <template data="{{...$root[$kk+'7'], $root}}" is="23f3c4e7"></template>
+      </view>
+      <view class="_div data-v-4e45b0a0 student" wx:if="{{currentIdx ==1 && students}}" style="height: 100%; display: flex;display: -webkit-flex;flex-direction: column">
+        <view class="_div data-v-4e45b0a0 group-title  mt10">
+          <view class="_div data-v-4e45b0a0 tips"></view><text class="_text data-v-4e45b0a0 f14 ml5">学生得分详情（数据显示范围：所有学生，含未完成）</text>
+        </view>
+        <view class="_div data-v-4e45b0a0 mt10" style="overflow: scroll;position: relative;float: left;flex:1;">
+          <view class="_div data-v-4e45b0a0 table">
+            <view class="_div data-v-4e45b0a0 thead">
+              <view class="_div data-v-4e45b0a0 tr">
+                <view class="_div data-v-4e45b0a0 td student-name">姓名</view>
+                <view class="_div data-v-4e45b0a0 td process">进度</view>
+                <view class="_div data-v-4e45b0a0 td score">得分</view>
+                <view class="_div data-v-4e45b0a0 td score" wx:key="idx" key="{{idx}}" wx:for="{{summary.paper_nav}}" wx:for-index="idx" wx:for-item="qsInfo">{{idx + 1}}</view>
+              </view>
+            </view>
+            <view class="_div data-v-4e45b0a0 tbody">
+              <view class="_div data-v-4e45b0a0 tr" wx:key="idx" key="{{idx}}" wx:for="{{students}}" wx:for-index="idx" wx:for-item="student">
+                <view class="_div data-v-4e45b0a0 td student-name">{{student.student_name}}</view>
+                <view class="_div data-v-4e45b0a0 td process"><template data="{{...$root[$kk+'8_'+idx], $root}}" is="1316dc2e"></template>%</view>
+                <view class="_div data-v-4e45b0a0 td score"><template data="{{...$root[$kk+'9_'+idx], $root}}" is="1316dc2e"></template></view>
+                <view class="_div data-v-4e45b0a0 td score" wx:key="idx2" key="{{idx2}}" wx:for="{{student.score_info}}" wx:for-index="idx2" wx:for-item="score"><template data="{{...$root[$kk+'10_'+idx+'-'+idx2], $root}}" is="1316dc2e"></template></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

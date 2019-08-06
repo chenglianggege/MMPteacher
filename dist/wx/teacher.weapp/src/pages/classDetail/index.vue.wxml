@@ -1,0 +1,33 @@
+<template name="a736b954">
+  <view class="_div data-v-25a54f50 container" wx:if="{{classDetail}}">
+    <view class="_div data-v-25a54f50 btn-group"><button class="_button data-v-25a54f50 weui-btn btn" type="primary" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">添加学生</button> <button class="_button data-v-25a54f50 weui-btn btn" type="primary" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">修改班级</button> <button class="_button data-v-25a54f50 weui-btn btn" type="primary" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">删除班级</button></view>
+    <view class="_div data-v-25a54f50 student-list">
+      <view class="_div data-v-25a54f50 tips-title">
+        <view class="_div data-v-25a54f50 tips"></view><text class="_text data-v-25a54f50 text">成员（点击姓名编辑）</text> <text class="_text data-v-25a54f50 text text2">激活人数: {{classDetail.activity_num}}/{{classDetail.student_num}}人</text>
+      </view>
+      <view class="_div data-v-25a54f50 table">
+        <view class="_div data-v-25a54f50 thead">
+          <view class="_div data-v-25a54f50 tr">
+            <view class="_div data-v-25a54f50 td">姓名</view>
+            <view class="_div data-v-25a54f50 td">头像</view>
+            <view class="_div data-v-25a54f50 td">电话</view>
+            <view class="_div data-v-25a54f50 td">绑卡状态</view>
+          </view>
+        </view>
+        <view class="_div data-v-25a54f50 tbody">
+          <view class="_div data-v-25a54f50 tr" wx:key="index" key="{{index}}" wx:for="{{classDetail.students}}" wx:for-index="index" wx:for-item="student">
+            <view class="_div data-v-25a54f50 td c-primary" bindtap="handleProxy" data-eventid="{{'3_'+index}}" data-comkey="{{$k}}">{{student.student_name}}</view>
+            <view class="_div data-v-25a54f50 td" wx:if="{{student.user_avatar}}">
+              <image class="_img data-v-25a54f50 student-avatar" src="{{STATIC_URL + student.user_avatar + '?x-oss-process=image/resize,h_100'}}"></image>
+            </view>
+            <view class="_div data-v-25a54f50 td" wx:else>
+              <image class="_img data-v-25a54f50 student-avatar" src="/teacher.weapp/src/images/df_student.png"></image>
+            </view>
+            <view class="_div data-v-25a54f50 td">{{student.student_phone}}</view>
+            <view class="_div data-v-25a54f50 td {{[student.bindStatus != 1 ? 'c-red' : '']}}">{{BIND_STATUS[student.bindStatus]}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

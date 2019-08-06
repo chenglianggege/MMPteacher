@@ -1,0 +1,71 @@
+@import "../../common/vendor.wxss";
+
+.container.data-v-7b3c9566 {
+  padding: 20rpx;
+}
+.form-group.data-v-7b3c9566 {
+  margin-bottom: 40rpx;
+}
+.form-title.data-v-7b3c9566 {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  align-items: center;
+}
+.form-title .tips.data-v-7b3c9566 {
+  content: "";
+  display: inline-block;
+  width: 16rpx;
+  height: 32rpx;
+  background-color: #409eff;
+}
+.form-title .text.data-v-7b3c9566 {
+  font-size: 28rpx;
+  padding-left: 10rpx;
+}
+.class-title.data-v-7b3c9566 {
+  margin-top: 60rpx;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+}
+.class-grade.data-v-7b3c9566 {
+  margin-top: 60rpx;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+}
+.class-title ._input.data-v-7b3c9566 {
+  border-bottom-width: 1rpx;
+  border-bottom-style: solid;
+  border-bottom-color: #999999;
+  width: 80%;
+  padding-bottom: 10rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
+.class-grade .picker.data-v-7b3c9566 {
+  border-bottom-style: solid;
+  border-bottom-width: 1rpx;
+  border-bottom-color: #999999;
+  width: 80%;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+}
+.to-publish.data-v-7b3c9566 {
+  width: 80%;
+  height: 80rpx;
+  background-color: #409eff;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon-icnext.data-v-7b3c9566 {
+  font-size: 70rpx;
+  color: #fff;
+  padding: 0;
+  height: 80rpx;
+  line-height: 80rpx;
+}

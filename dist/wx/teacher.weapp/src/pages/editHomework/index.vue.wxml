@@ -1,0 +1,38 @@
+<template name="773ea5e3">
+  <view class="_div data-v-26137929 container">
+    <view class="_div data-v-26137929 form-group">
+      <view class="_div data-v-26137929 form-title">
+        <view class="_div data-v-26137929 tips"></view><text class="_text data-v-26137929 text">发布时间</text>
+        <view class="_div data-v-26137929 sel-data f14 c-gray" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+          {{startTime}}
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-26137929 form-group">
+      <view class="_div data-v-26137929 form-title">
+        <view class="_div data-v-26137929 tips"></view><text class="_text data-v-26137929 text">截止时间</text>
+        <view class="_div data-v-26137929 sel-data">
+          <picker value="{{finish_data}}" mode="date" bindchange="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_picker data-v-26137929">
+            <view class="_view data-v-26137929 picker f14">{{finish_data}}</view>
+          </picker>
+        </view>
+        <view class="_div data-v-26137929 sel-time">
+          <picker value="{{finish_time}}" mode="time" bindchange="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}" class="_picker data-v-26137929">
+            <view class="_view data-v-26137929 picker f14">{{finish_time}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-26137929 form-group">
+      <view class="_div data-v-26137929 form-title">
+        <view class="_div data-v-26137929 tips"></view><text class="_text data-v-26137929 text">作业名称</text>
+      </view>
+      <view class="_div data-v-26137929 exam-title"><input type="text" maxlength="50" value="{{exam_title}}" bindinput="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}" class="_input data-v-26137929" /></view>
+    </view>
+    <view class="_div data-v-26137929 flex-center mt40">
+      <view class="_div data-v-26137929 to-publish" bindtap="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}">
+        <icon class="_icon data-v-26137929 iconfont icon-icnext"></icon>
+      </view>
+    </view>
+  </view>
+</template>

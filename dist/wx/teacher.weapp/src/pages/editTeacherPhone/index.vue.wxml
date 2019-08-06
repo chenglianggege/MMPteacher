@@ -1,0 +1,20 @@
+<template name="62b8891f">
+  <view class="_div data-v-28c64965 container">
+    <view class="_div data-v-28c64965 form-group">
+      <view class="_div data-v-28c64965 phone-num">
+        <icon class="_icon data-v-28c64965 iconfont icon-mobile"></icon> <text style="margin-left: 10px;font-size: 16px" class="_text data-v-28c64965">{{passPhone}}（原号码）</text>
+      </view>
+      <view class="_div data-v-28c64965 phone-num">
+        <icon class="_icon data-v-28c64965 iconfont icon-mobile"></icon> <input type="number" maxlength="11" value="{{teacherPhone}}" bindinput="handleProxy" placeholder="请输入新手机号码" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_input data-v-28c64965" />
+      </view>
+      <view class="_div data-v-28c64965 phone-num">
+        <icon class="_icon data-v-28c64965 iconfont icon-safe"></icon> <input type="number" maxlength="4" value="{{phoneCode}}" bindinput="handleProxy" placeholder="请输入4位验证码" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_input data-v-28c64965" /> <button class="_button data-v-28c64965 weui-btn plain sent-code" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">{{sendTime > 0 ? sendTime + '秒后重发' : '发送验证码'}}</button>
+      </view>
+      <view class="_div data-v-28c64965 flex-center mt40">
+        <view class="_div data-v-28c64965 to-publish" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}">
+          <icon class="_icon data-v-28c64965 iconfont icon-icnext"></icon>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

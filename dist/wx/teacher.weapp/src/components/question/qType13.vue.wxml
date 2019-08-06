@@ -1,0 +1,27 @@
+<template name="2cc47892">
+  <view class="_div data-v-7d7a978c question">
+    <view class="_div data-v-7d7a978c question-title">
+      <view class="_div data-v-7d7a978c tips"></view><text class="_text data-v-7d7a978c text">{{question.qs_title}}</text>
+    </view>
+    <view class="_div data-v-7d7a978c select-question" hidden="{{!(showCart)}}">
+      <view class="_div data-v-7d7a978c flex1"><button class="_button data-v-7d7a978c weui-btn select-btn {{[!selStat ? 'plain' : '']}}" type="primary" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+          {{!selStat ? '选择' : (selStat === 1 ? '部分选' : '已选择' )}}
+        </button></view>
+      <view class="_div data-v-7d7a978c flex1 flex-center"><text class="_text data-v-7d7a978c show-detail" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">{{showDetail ? '收起详情↑' : '查看详情↓'}}</text></view>
+    </view>
+    <view class="_div data-v-7d7a978c question-detail" hidden="{{!(!showCart || showDetail)}}">
+      <view class="_div data-v-7d7a978c question-subtitle">{{question.qs_content}}</view>
+      <view class="_div data-v-7d7a978c question-prediv">
+        <view class="_div data-v-7d7a978c qs-info" wx:key="info.info_id" key="{{info.info_id}}" wx:for="{{question.info}}" wx:for-index="infoIdx" wx:for-item="info">
+          <view class="_div data-v-7d7a978c items" wx:key="item.item_id" key="{{item.item_id}}" wx:for="{{info.items}}" wx:for-index="itemIdx" wx:for-item="item">
+            <view class="_div data-v-7d7a978c item-content">{{item.item_content}}
+              <icon wx:if="{{item.source_content}}" class="_icon data-v-7d7a978c iconfont icon-laba {{[playUrl == item.source_content ? 'onplay' : '']}}" bindtap="handleProxy" data-eventid="{{'2_'+infoIdx+'-'+itemIdx}}" data-comkey="{{$k}}"></icon>
+            </view>
+            <view class="_div data-v-7d7a978c item-answer">准备时间：{{item.item_prepare_second}}秒 答题时间：{{item.item_answer_second}}秒 题目满分：{{item.item_score}}分</view>
+            <view class="_div data-v-7d7a978c item-answer c-primary" wx:if="{{showAnswer}}" bindtap="handleProxy" data-eventid="{{'3_'+infoIdx+'-'+itemIdx}}" data-comkey="{{$k}}">查看学生回答→</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

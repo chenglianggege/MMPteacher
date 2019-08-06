@@ -1,0 +1,120 @@
+@import "../../common/vendor.wxss";
+
+.container.data-v-4e45b0a0 {
+  height: 100%;
+  margin: 0 20rpx;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+}
+.group-title.data-v-4e45b0a0 {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 28rpx;
+}
+.group-title .tips.data-v-4e45b0a0 {
+  content: "";
+  display: inline-block;
+  width: 16rpx;
+  height: 32rpx;
+  background-color: #409eff;
+}
+.table.data-v-4e45b0a0 {
+  font-size: 32rpx;
+}
+.qs-no.data-v-4e45b0a0 {
+  width: 100rpx !important;
+  text-align: center;
+}
+.qs-title.data-v-4e45b0a0 {
+  flex: 1;
+}
+.tbody .qs-title.data-v-4e45b0a0 {
+  overflow-y: scroll;
+  white-space: nowrap;
+  text-align: left;
+}
+.tab.data-v-4e45b0a0 {
+  margin-top: 40rpx;
+}
+.tab-items.data-v-4e45b0a0 {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  height: 100%;
+}
+.table.data-v-4e45b0a0 {
+  width: 100%;
+}
+.navbar.data-v-4e45b0a0 {
+  display: flex;
+  display: -webkit-flex;
+}
+.navbar-item.data-v-4e45b0a0 {
+  flex: 1;
+  text-align: center;
+  height: 60rpx;
+  font-size: 32rpx;
+  line-height: 60rpx;
+  padding-bottom: 10rpx;
+}
+.item_on.data-v-4e45b0a0 {
+  color: #409eff;
+  border-bottom-style: solid;
+  border-bottom-color: #409eff;
+  border-right-width: 4rpx;
+}
+.tr .student-name.data-v-4e45b0a0 {
+  min-width: 160rpx;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tb3 .student-name.data-v-4e45b0a0 {
+  background-color: #fff;
+}
+.tr .process.data-v-4e45b0a0 {
+  min-width: 120rpx;
+  flex: 1;
+}
+.tr .score.data-v-4e45b0a0 {
+  min-width: 80rpx;
+  flex: 1;
+}
+.td.data-v-4e45b0a0 {
+  display: block;
+}
+.fixed.data-v-4e45b0a0 {
+  position: fixed;
+}
+.tb1.data-v-4e45b0a0 {
+  position: fixed;
+  z-index: 1001;
+  width: 120rpx;
+}
+.tb2.data-v-4e45b0a0 {
+  position: -webkit-sticky;
+  position: sticky;
+  margin-left: 120rpx;
+  top: 0;
+  z-index: 1000;
+}
+.tb3.data-v-4e45b0a0 {
+  float: left;
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 1000;
+  width: 120rpx;
+  left: 0;
+}
+.tb4.data-v-4e45b0a0 {
+  left: 120rpx;
+  position: absolute;
+}
+.summary.data-v-4e45b0a0 {
+  flex: 1;
+}

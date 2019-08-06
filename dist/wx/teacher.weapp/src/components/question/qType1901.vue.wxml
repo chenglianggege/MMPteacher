@@ -1,0 +1,44 @@
+<template name="4a6b6319">
+  <view class="_div data-v-4615ab93 question">
+    <view class="_div data-v-4615ab93 question-title">
+      <view class="_div data-v-4615ab93 tips"></view><text class="_text data-v-4615ab93 text">{{question.qs_title}}</text>
+    </view>
+    <view class="_div data-v-4615ab93 select-question" hidden="{{!(showCart)}}">
+      <view class="_div data-v-4615ab93 flex1"><button class="_button data-v-4615ab93 weui-btn select-btn {{[!selStat ? 'plain' : '']}}" type="primary" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+          {{!selStat ? '选择' : (selStat === 1 ? '部分选' : '已选择' )}}
+        </button></view>
+      <view class="_div data-v-4615ab93 flex1 flex-center"><text class="_text data-v-4615ab93 show-detail" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">{{showDetail ? '收起详情↑' : '查看详情↓'}}</text></view>
+    </view>
+    <view class="_div data-v-4615ab93 question-detail" hidden="{{!(!showCart || showDetail)}}">
+      <view class="_div data-v-4615ab93 question-subtitle">{{question.qs_content}}</view>
+      <view class="_div data-v-4615ab93 question-prediv">
+        <view class="_div data-v-4615ab93 qs-info" wx:key="info.info_id" key="{{info.info_id}}" wx:for="{{question.info}}" wx:for-index="infoIdx" wx:for-item="info">
+          <view class="_div data-v-4615ab93 info-content" wx:if="{{infoIdx == 0}}">
+            {{ weifangQusetion1 }}
+            <view class="_br data-v-4615ab93"></view>
+            {{ weifangQusetion1a }}
+          </view>
+          <view class="_div data-v-4615ab93 info-content" wx:if="{{infoIdx == 1}}">
+            {{ weifangQusetion2 }}
+            <view class="_br data-v-4615ab93"></view>
+            {{ weifangQusetion2a }}
+            <view class="_br data-v-4615ab93"></view>
+            {{ weifangQusetion2b }}
+          </view>
+          <icon wx:if="{{info.info_content_source_content}}" class="_icon data-v-4615ab93 iconfont icon-laba {{[playUrl == info.info_content_source_content ? 'onplay' : '']}}" bindtap="handleProxy" data-eventid="{{'2_'+infoIdx}}" data-comkey="{{$k}}"></icon>
+          <image class="_img data-v-4615ab93 option-img picimg_cl" mode="aspectFit" wx:if="{{question.info[0].info_content_img&&infoIdx == 0}}" src="{{STATIC_URL + question.info[0].info_content_img}}"></image>
+          <view class="_div data-v-4615ab93 items" wx:key="item.item_id" key="{{item.item_id}}" wx:for="{{info.items}}" wx:for-index="itemIdx" wx:for-item="item">
+            <view wx:if="{{infoIdx == 0}}" class="_div data-v-4615ab93 item-content">
+              {{'填空'+(itemIdx+1)+': '+item.item_content}}
+            </view>
+            <view wx:if="{{infoIdx == 1}}" class="_div data-v-4615ab93 item-content">
+              {{item.item_content}}
+            </view>
+            <view wx:if="{{infoIdx == 1}}" class="_div data-v-4615ab93 item-answer">准备时间：{{item.item_prepare_second}}秒 答题时间：{{item.item_answer_second}}秒 题目满分：{{item.item_score}}分</view>
+            <view class="_div data-v-4615ab93 item-answer c-primary" wx:if="{{showAnswer}}" bindtap="handleProxy" data-eventid="{{'3_'+infoIdx+'-'+itemIdx}}" data-comkey="{{$k}}">查看学生回答→</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

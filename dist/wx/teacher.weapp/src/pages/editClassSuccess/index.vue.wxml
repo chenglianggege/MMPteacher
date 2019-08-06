@@ -1,0 +1,13 @@
+<template name="4d845f1e">
+  <view class="_div data-v-13921f64 container">
+    <view style="margin-top: 50px" class="_div data-v-13921f64">
+      <icon type="success" size="70" class="_icon data-v-13921f64"></icon>
+    </view>
+    <view style="margin-top: 30px;font-size: 18px" class="_div data-v-13921f64">{{classId > 0 ? '修改班级成功' : '创建班级成功'}}</view>
+    <view style="margin-top: 40px;" wx:if="{{!(classId > 0)}}" class="_div data-v-13921f64"><button class="_button data-v-13921f64 weui-btn btn-next" type="primary" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">继续创建班级</button></view>
+    <view style="margin-top: 30px;" class="_div data-v-13921f64"><button class="_button data-v-13921f64 weui-btn btn-next" type="primary" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">返回班级列表</button></view>
+    <view style="margin-top: 30px;" wx:if="{{classId > 0}}" class="_div data-v-13921f64"><button class="_button data-v-13921f64 weui-btn btn-next" type="primary" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">返回班级详情</button></view>
+    <view style="margin-top: 30px;" class="_div data-v-13921f64"><button class="_button data-v-13921f64 weui-btn btn-next" type="primary" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}">返回首页</button></view>
+    <view style="margin-top: 30px;" class="_div data-v-13921f64"><button class="_button data-v-13921f64 weui-btn btn-next" type="primary" bindtap="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}">布置作业</button></view>
+  </view>
+</template>

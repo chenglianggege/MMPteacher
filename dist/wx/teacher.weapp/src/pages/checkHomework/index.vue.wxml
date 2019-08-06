@@ -1,0 +1,10 @@
+<import src="/teacher.weapp/src/components/homeworkItem.vue.wxml" />
+<import src="/teacher.weapp/src/components/listFooter.vue.wxml" /><template name="6e0b8c76">
+  <view class="_div data-v-16806182 container">
+    <view class="_div data-v-16806182 homework-list" wx:if="{{total > 0}}"><template wx:key="idx" binddel="handleProxy" data-eventid="{{'0_'+idx}}" data-comkey="{{$k}}" data="{{...$root[$kk+'0_'+idx], $root}}" is="60211b9e" wx:for="{{homeworkList}}" wx:for-index="idx" wx:for-item="item"></template></view>
+    <view class="_div data-v-16806182 no-class" wx:if="{{total === 0}}">
+      <image src="/teacher.weapp/src/images/checkHomework/wuzuoye.png" class="_img data-v-16806182"></image>
+      <view class="_div data-v-16806182 add-class-tips">您还没有布置任何作业！</view> <button class="_button data-v-16806182 weui-btn clear add-class" type="primary" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">布置作业</button>
+    </view> <template wx:if="{{total == loadTotal && total > 0}}" data="{{...$root[$kk+'1'], $root}}" is="23f3c4e7"></template>
+  </view>
+</template>

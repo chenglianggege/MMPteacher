@@ -1,0 +1,206 @@
+<template>
+  <div class="container" >
+    <div class="c-primary f14 ml5 mt10 cartInfo" v-if="!paperId && !examId">
+      <span class="mr10">题目数量：{{cartNum}}题</span>
+      <span class="mr10">总分：{{score}}分</span>
+      <span >预计时间：{{duration}}分钟</span>
+    </div>
+    <div class="line"></div>
+    <div class="questions" v-for="(question,index) in paperDetail" :key="index" >
+      <qtype1 v-if="question.qs_type == 1" :question="question" :showCart="paperId > 0"/>
+      <qtype3 v-if="question.qs_type == 3" :question="question" :showCart="paperId > 0"/>
+      <qtype4 v-if="question.qs_type == 4" :question="question" :showCart="paperId > 0"/>
+      <qtype5 v-if="question.qs_type == 5" :question="question" :showCart="paperId > 0"/>
+      <qtype9 v-if="question.qs_type == 9" :question="question" :showCart="paperId > 0"/>
+      <qtype12 v-if="question.qs_type == 12" :question="question" :showCart="paperId > 0"/>
+      <qtype13 v-if="question.qs_type == 13" :question="question" :showCart="paperId > 0"/>
+      <qtype16 v-if="question.qs_type == 16" :question="question" :showCart="paperId > 0"/>
+      <qtype17 v-if="question.qs_type == 17" :question="question" :showCart="paperId > 0"/>
+      <qtype18 v-if="question.qs_type == 18" :question="question" :showCart="paperId > 0"/>
+      <qtype21 v-if="question.qs_type == 21" :question="question" :showCart="paperId > 0"/>
+      <qtype26 v-if="question.qs_type == 26" :question="question" :showCart="paperId > 0"/>
+      <qtype37 v-if="question.qs_type == 37" :question="question" :showCart="paperId > 0"/>
+      <qtype38 v-if="question.qs_type == 38" :question="question" :showCart="paperId > 0"/>
+      <qtype40 v-if="question.qs_type == 40" :question="question" :showCart="paperId > 0"/>
+      <qtype41 v-if="question.qs_type == 41" :question="question" :showCart="paperId > 0"/>
+      <qtype42 v-if="question.qs_type == 42" :question="question" :showCart="paperId > 0"/>
+      <qtype1901 v-if="question.qs_type == 1901" :question="question" :showCart="paperId > 0"/>
+    </div>
+    <list-footer v-if="!paperId"></list-footer>
+  </div>
+</template>
+
+<script>
+import syncFun from '@/utils/syncFun.js'
+import qType1 from '@/components/question/qType1'
+import qType3 from '@/components/question/qType3'
+import qType4 from '@/components/question/qType4'
+import qType5 from '@/components/question/qType5'
+import qType9 from '@/components/question/qType9'
+import qType12 from '@/components/question/qType12'
+import qType13 from '@/components/question/qType13'
+import qType16 from '@/components/question/qType16'
+import qType17 from '@/components/question/qType17'
+import qType18 from '@/components/question/qType18'
+import qType21 from '@/components/question/qType21'
+import qType26 from '@/components/question/qType26'
+import qType37 from '@/components/question/qType37'
+import qType38 from '@/components/question/qType38'
+import qType40 from '@/components/question/qType40'
+import qType41 from '@/components/question/qType41'
+import qType42 from '@/components/question/qType42'
+import qType1901 from '@/components/question/qType1901'
+import ListFooter from "@/components/listFooter";
+import mainMixin from '@/mixin/mainMixin.js'
+import cartMixin from "@/mixin/cartMixin.js"
+
+export default {
+  data () {
+    return {
+      paperId: 0,
+      examId: 0,
+      paper: {},
+      paperDetail: []
+    }
+  },
+  mixins: [mainMixin, cartMixin],
+  components: {
+    qtype1: qType1,
+    qtype3: qType3,
+    qtype4: qType4,
+    qtype5: qType5,
+    qtype9: qType9,
+    qtype12: qType12,
+    qtype13: qType13,
+    qtype16: qType16,
+    qtype17: qType17,
+    qtype18: qType18,
+    qtype21: qType21,
+    qtype26: qType26,
+    qtype38: qType38,
+    qtype37: qType37,
+    qtype40: qType40,
+    qtype41: qType41,
+    qtype42: qType42,
+    qtype1901: qType1901,
+    'list-footer': ListFooter,
+  },
+  computed: {
+    cartNum (){
+      return this.qsNum()
+    },
+    duration () {
+      return this.qsDuration()
+    },
+    score(){
+      return this.qsScore()
+    }
+  },
+  methods: {
+    loadCachePaper(paperId){
+      this.paperId = paperId
+      this.paper = wx.getStorageSync('paper_' + paperId);
+      wx.setNavigationBarTitle({title: this.paper.paper_title})
+      this.paperDetail = wx.getStorageSync('paperDetail_' + paperId);
+    },
+    async loadCartPaper(){
+      let cart = wx.getStorageSync('cart') || {}
+      let question_ids = []
+      for (let i in cart) {
+        let paper = cart[i]
+        for (let j in paper['qs']) {
+          let qs = paper['qs'][j]
+          question_ids.push(qs.qsId)
+        }
+      }
+      if (!question_ids.length){
+        return
+      }
+      try {
+        wx.showLoading({title: '获取试卷中...', mask: true})
+        let ret = await syncFun.request({
+          url: this.globalData.apiBaseUrl + '/teacher/paper/question-by-ids',
+          data: {token: this.globalData.token, question_ids: question_ids.join(',')},
+          method: 'GET'
+        })
+        wx.hideLoading();
+        if (ret.data.retCode !== 0) {
+          wx.showToast({ title: ret.data.retMsg, icon: 'none', })
+          return
+        }
+        this.paperDetail = ret.data.retData
+        wx.setNavigationBarTitle({title: '预览'})
+      }catch (e) {
+        wx.hideLoading();
+        wx.showToast({ title: '网络通信错误！', icon: 'none', })
+        console.log('e', e)
+      }finally {
+      }
+    },
+    async loadExamPaper(examId){
+      this.examId = examId
+      try {
+        wx.showLoading({title: '获取试卷中...', mask: true})
+        let ret = await syncFun.request({
+          url: this.globalData.apiBaseUrl + '/teacher/homework/paper',
+          data: {token: this.globalData.token, exam_id: examId},
+          method: 'GET'
+        })
+        wx.hideLoading();
+        if (ret.data.retCode !== 0) {
+          wx.showToast({ title: ret.data.retMsg, icon: 'none', })
+          return
+        }
+        this.paperDetail = ret.data.retData
+        wx.setNavigationBarTitle({title: '内容讲评'})
+
+      }catch (e) {
+        wx.hideLoading();
+        wx.showToast({ title: '网络通信错误！', icon: 'none', })
+        console.log('e', e)
+      }finally {
+      }
+    }
+  },
+
+  onLoad () {
+    this.paper = {}
+    this.paperDetail = {}
+    let query = this.$root.$mp.query
+    let paperId = query.hasOwnProperty('paperId') ? query.paperId : 0
+    if (paperId) {
+      this.loadCachePaper(paperId)
+      return
+    }
+    let examId = query.hasOwnProperty('examId') ? query.examId : 0
+    if (examId) {
+      this.loadExamPaper(examId)
+      return
+    }
+    this.loadCartPaper()
+
+  },
+  onUnload(){
+    this.paperId = 0
+    this.examId = 0
+    this.paper = {}
+    this.paperDetail = {}
+    wx.removeStorage({key: 'paper_' + this.paperId});
+    wx.removeStorage({key: 'paperDetail_' + this.paperId});
+  }
+}
+</script>
+
+<style scoped>
+  .questions{
+    margin-left: 5px;
+    margin-top: 10px;
+  }
+  .cartInfo{
+    height: 25px;
+    line-height: 25px;
+    border-bottom-width: 1rpx;
+    border-bottom-style: solid;
+    border-bottom-color: #f2f2f2;
+  }
+</style>

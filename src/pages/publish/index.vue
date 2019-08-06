@@ -1,0 +1,417 @@
+<template>
+  <div class="container" >
+    <div class="groups">
+      <div class="item-group">
+        <div class="item" :class="{'item-select': grade === 7}" @click="setGrade(7)">七年级</div>
+        <div class="item" :class="{'item-select': grade === 8}" @click="setGrade(8)">八年级</div>
+        <div class="item" :class="{'item-select': grade === 9}" @click="setGrade(9)">九年级</div>
+      </div>
+      <div class="item-group">
+        <div class="item" :class="{'item-select': moduleId === 4}" @click="setModule(4)">同步跟读</div>
+        <div class="item" :class="{'item-select': moduleId === 3}" @click="setModule(3)">听说专项</div>
+        <div class="item" :class="{'item-select': moduleId === 2}" @click="setModule(2)">模拟试卷</div>
+      </div>
+      <div class="item-group" v-if="moduleId === 3">
+        <div
+          v-for="item in qsTypeList"
+          :key="item.qs_type_id"
+          class="item"
+          :class="{'item-select': qsType == item.qs_type_id}"
+          @click="setQsType(item.qs_type_id)">
+          {{item.qs_type_name}}
+        </div>
+      </div>
+      <div class="item-group" v-if="moduleId === 4">
+        <div class="item" :class="{'item-select': tbType === 4}" @click="setTongbu(4)">单词跟读</div>
+        <div class="item" :class="{'item-select': tbType === 5}" @click="setTongbu(5)">课文跟读</div>
+      </div>
+    </div>
+    <scroll-div scroll-y enable-back-to-top class="list-group">
+      <div class="list-item" v-for="item in paperList" :key="item.paper_id">
+        <text class="list-content">{{item.paper_title}}</text>
+        <div class="list-option">
+          <text class="list-btn-detail c-primary" @click="toDetail(index)">详情</text>
+          <sel-btn :cart="cart" v-on:click="selectPaper" :paper="item" />
+        </div>
+      </div>
+      <div class="mt20"><list-footer ></list-footer></div>
+    </scroll-div>
+    <div class="footer-bar">
+      <div class="clear-all bar-item" @click="clearCart"><icon class="iconfont icon-ziyuan ic-clear-all"></icon>清空试题</div>
+      <div class="qs-num bar-item" @click="toCart">共{{cartNum}}题</div>
+      <div class="to-publish bar-item" @click="toConfirm">
+        <div class="mr10">
+          <div class="title1">布置作业</div>
+          <div class="title2">预计{{duration}}分钟完成</div>
+        </div>
+        <icon class="iconfont icon-icnext ic-to-publish"></icon></div>
+    </div>
+  </div>
+</template>
+
+<script>
+import syncFun from '@/utils/syncFun.js'
+import cartMixin from "@/mixin/cartMixin.js"
+import selBtn from "@/components/selBtn"
+const onfire = require("@/utils/onfire.js").onfire
+import listFooter from '@/components/listFooter'
+import mainMixin from '@/mixin/mainMixin.js'
+
+
+export default {
+  data () {
+    return {
+      paperList: [],
+      grade: 7,
+      moduleId: 4,
+      qsType: 0,
+      tbType: 4,
+      qsTypeList: [],
+
+    }
+  },
+  onError (err) {
+    console.log(err)
+  },
+  mixins: [cartMixin, mainMixin],
+  components: {
+    'sel-btn': selBtn,
+    'list-footer': listFooter
+  },
+  computed: {
+    cartNum (){
+      return this.qsNum()
+    },
+    duration () {
+      return this.qsDuration()
+    }
+  },
+  watch : {
+  },
+  methods: {
+    setModule(module){
+      this.moduleId = +module
+      wx.setStorageSync('moduleId', +module)
+      this.initPage()
+    },
+    setGrade(grade){
+      this.grade = +grade
+      wx.setStorageSync('grade', +grade)
+      this.initPage()
+    },
+    setTongbu(tbType){
+      this.tbType = +tbType
+      wx.setStorageSync('tbType', +tbType)
+      this.loadPaper()
+    },
+    setQsType(qsType){
+      this.qsType = qsType
+      wx.setStorageSync('qsType', qsType)
+      this.loadPaper()
+    },
+    async selectPaper(paper_id){
+
+      if (this.cart.hasOwnProperty('p_' + paper_id)) {
+        this.removeCart(paper_id)
+        return
+      }
+
+      let paperDetail = await this.loadPaperDetail(paper_id)
+      let items = []
+      let paperQsNum = paperDetail.length
+      for (let i in paperDetail) {
+        let question = paperDetail[i]
+        let duration = 0
+        let qsScore = 0
+        for (let i in question.info) {
+          let info = question.info[i]
+          duration += +info.duration
+          for (let j in info.items) {
+            qsScore += +info.items[j].item_score
+          }
+        }
+        duration += +question.audio_duration
+        duration += question.item_num * 1000
+        let qsInfoNum = paperDetail[i]['info'].length
+        items.push({paperId: paper_id, paperQsNum: paperQsNum, qsId: question.qs_id, qsTitle: question.qs_title, qsInfoNum: qsInfoNum,qsInfoIds: [], duration: duration, qsScore: qsScore})
+      }
+      this.batchAdd(items)
+    },
+    async toDetail(id){
+      let paper = this.paperList[id]
+      let paperDetail = await this.loadPaperDetail(paper.paper_id)
+      wx.setStorageSync('paperDetail_' + paper.paper_id, paperDetail)
+      wx.setStorageSync('paper_' + paper.paper_id, paper)
+      wx.navigateTo({url: '/pages/paper/main?paperId=' + paper.paper_id})
+    },
+    initPage(){
+      // 同步
+      if (this.moduleId === 4){
+        this.loadPaper()
+      }
+      //模拟
+      if (this.moduleId === 2){
+        this.loadPaper()
+      }
+      //专项
+      if (this.moduleId === 3){
+        this.loadQsType()
+      }
+    },
+    async loadPaper(){
+      let moduleId = this.moduleId
+      if (moduleId === 4){
+        moduleId = this.tbType
+      }
+      this.paperList = []
+      try {
+        wx.showLoading({title: '加载中...', mask: true})
+        let ret = await syncFun.request({
+          url: this.globalData.apiBaseUrl + '/teacher/paper/query',
+          data: {token: this.globalData.token, grade: this.grade, paper_type: moduleId, qs_type: this.qsType},
+          method: 'GET'
+        })
+        wx.hideLoading();
+        if (ret.data.retCode !== 0) {
+          wx.showToast({ title: ret.data.retMsg, icon: 'none', })
+          return
+        }
+        this.paperList = ret.data.retData ? ret.data.retData : []
+      }catch (e) {
+        wx.hideLoading();
+        wx.showToast({ title: '网络通信错误！', icon: 'none', })
+        console.log('e', e)
+      }finally {
+
+      }
+
+    },
+    async loadQsType(){
+      this.paperList = []
+      this.qsTypeList = []
+      try {
+        wx.showLoading({title: '加载中...', mask: true})
+        let ret = await syncFun.request({
+          url: this.globalData.apiBaseUrl + '/teacher/paper/types',
+          data: {token: this.globalData.token, grade: this.grade},
+          method: 'GET'
+        })
+        wx.hideLoading();
+        if (ret.data.retCode !== 0) {
+          wx.showToast({ title: ret.data.retMsg, icon: 'none', })
+          return
+        }
+        this.qsTypeList = ret.data.retData ? ret.data.retData : []
+        if (!this.qsTypeList.length){
+          return
+        }
+        this.qsType = this.qsTypeList[0].qs_type_id
+        this.loadPaper()
+
+      }catch (e) {
+        wx.hideLoading();
+        wx.showToast({ title: '网络通信错误！', icon: 'none', })
+      }finally {
+      }
+    },
+    loadPaperDetail(paperId){
+      let _this = this
+      return new Promise(async function(resolve, reject) {
+        try {
+          wx.showLoading({title: '获取试卷中...', mask: true})
+          let ret = await syncFun.request({
+            url: _this.globalData.apiBaseUrl + '/teacher/paper/detail',
+            data: {token: _this.globalData.token, paper_id: paperId},
+            method: 'GET'
+          })
+          wx.hideLoading();
+          if (ret.data.retCode !== 0) {
+            wx.showToast({ title: ret.data.retMsg, icon: 'none', })
+            resolve(false)
+            return
+          }
+          resolve(ret.data.retData)
+        }catch (e) {
+          wx.hideLoading();
+          wx.showToast({ title: '网络通信错误！', icon: 'none', })
+          console.log('e', e)
+          reject(e)
+        }finally {
+        }
+      })
+    },
+    toConfirm(){
+      if (this.qsNum() <= 0){
+        wx.showToast({ title: '还未选择发布的试题！', icon: 'none', })
+        return
+      }
+      wx.navigateTo({url: '/pages/publishConfirm/main'})
+    },
+    toCart(){
+      if (this.qsNum() <= 0){
+        wx.showToast({ title: '还未选择发布的试题！', icon: 'none', })
+        return
+      }
+      wx.navigateTo({url: '/pages/paper/main'})
+    }
+  },
+
+  onLoad () {
+    let grade = wx.getStorageSync('grade') ? wx.getStorageSync('grade') : 0;
+    this.grade = grade ? grade : 7;
+    let moduleId = wx.getStorageSync('moduleId');
+    this.moduleId = moduleId ? moduleId: 4;
+    let tbType = wx.getStorageSync('tbType')
+    this.tbType = tbType ? tbType: 4
+    this.initPage()
+    let _this = this
+    this.cartEvent =  onfire.on('cart2', function (){
+      let cart = wx.getStorageSync('cart')
+      _this.cart = {}
+      _this.cart = cart ? cart : {}
+      _this.$forceUpdate()
+    })
+  },
+  onUnload(){
+    onfire.un('cart');
+    onfire.un(this.cartEvent);
+  }
+}
+</script>
+
+<style scoped>
+  .container{
+    height: 100%;
+    flex: 1;
+    display: flex;display: -webkit-flex;
+    flex-direction: column;
+  }
+  .groups{
+    margin-left: 5px;
+    flex: 0 0 auto;
+  }
+  .item-group{
+    display: flex;display: -webkit-flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    border-bottom-width: 1rpx;
+    border-bottom-style: solid;
+    border-bottom-color: #f2f2f2;
+    overflow-x: auto;
+    width: 100%;
+    white-space: nowrap;
+  }
+  .item{
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 16px;
+    height: 25px;
+    margin-right: 10px;
+    line-height: 25px;
+  }
+  .item-select{
+    color: #fff;
+    background-color: #0088de;
+  }
+  .list-group{
+    flex: 1;
+    margin-left: 5px;
+    height: 200px;
+    overflow-y: scroll;
+  }
+  .list-item{
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    display: flex;display: -webkit-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom-width: 1rpx;
+    border-bottom-style: solid;
+    border-bottom-color: #f2f2f2;
+  }
+  .list-content{
+    flex: 1;
+    font-size: 16px;
+    height: 25px;
+    overflow-y: scroll;
+    margin-right: 10px;
+    padding-left: 5px;
+    line-height: 25px;
+    white-space:nowrap;
+  }
+  .list-option{
+    display: flex;display: -webkit-flex;
+    width: 120px;
+    flex-direction: row;
+  }
+  .list-btn-detail{
+    font-size: 16px;
+    height: 25px;
+    line-height: 25px;
+  }
+  .list-btn-select{
+    height: 25px;
+    line-height: 25px;
+    margin-top: 0;
+    font-size: 16px;
+    width: 60px;
+    text-align: center;
+    padding: 0;
+  }
+  .footer-bar{
+    height: 60px;
+    background-color: #409eff;
+    width: 100%;
+    display: flex;display: -webkit-flex;
+    flex-direction: row;
+    flex: 0 0 auto;
+  }
+  .bar-item{
+    height: 60px;
+    display: flex;display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .clear-all{
+    font-size: 12px;
+    color: #fff;
+    width: 90px;
+    background-color: #409eff;
+    border-right-style: solid;
+    border-right-width: 1rpx;
+    border-right-color: #fff;
+  }
+  .ic-clear-all{
+    font-size: 30px;
+    color: #fff;
+  }
+  .qs-num{
+    font-size: 12px;
+    color: #fff;
+    width: 90px;
+    border-right-style: solid;
+    border-right-width: 1rpx;
+    border-right-color: #fff;
+  }
+  .ic-to-publish{
+    font-size: 45px;
+    color: #fff;
+    padding: 0;
+    margin-top: -10px;
+    height: 60px;
+  }
+  .to-publish{
+    flex: 1;
+  }
+  .to-publish .title1{
+    font-size: 16px;
+    color: #fff;
+  }
+  .to-publish .title2{
+    font-size: 12px;
+    color: #fff;
+  }
+</style>

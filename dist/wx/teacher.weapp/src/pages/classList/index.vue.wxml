@@ -1,0 +1,42 @@
+<template name="1e5041e3">
+  <view class="_div data-v-3ddfa45d container">
+    <view class="_div data-v-3ddfa45d add-class" bindtap="handleProxy" wx:if="{{classNum > 0}}" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+      <image src="/teacher.weapp/src/images/classList/xinzengbanji.png" class="_img data-v-3ddfa45d"></image>
+      <view class="_div data-v-3ddfa45d btn-title">
+        <view class="_div data-v-3ddfa45d title">新增班级</view>
+        <view class="_div data-v-3ddfa45d desc">点击此处添加班级</view>
+      </view>
+      <icon class="_icon data-v-3ddfa45d iconfont icon-more"></icon>
+    </view>
+    <view class="_div data-v-3ddfa45d class-list" wx:if="{{classNum > 0}}">
+      <view class="_div data-v-3ddfa45d class-item" wx:key="index" key="{{index}}" bindtap="handleProxy" data-eventid="{{'1_'+index}}" data-comkey="{{$k}}" wx:for="{{classList}}" wx:for-index="index" wx:for-item="item">
+        <image src="/teacher.weapp/src/images/classList/banjikapian.png" class="_img data-v-3ddfa45d"></image>
+        <view class="_div data-v-3ddfa45d float-item">
+          <view class="_div data-v-3ddfa45d top-item">
+            <image src="/teacher.weapp/src/images/classList/banjiicon.png" class="_img data-v-3ddfa45d"></image>
+            <view class="_div data-v-3ddfa45d class-name">{{item.class_name}}</view>
+            <icon class="_icon data-v-3ddfa45d iconfont icon-more"></icon>
+          </view>
+          <view class="_div data-v-3ddfa45d bottom-item">
+            <view class="_div data-v-3ddfa45d item">
+              <view class="_div data-v-3ddfa45d num">{{item.student_num}}</view>
+              <view class="_div data-v-3ddfa45d title">
+                <image src="/teacher.weapp/src/images/classList/zongrenshu.png" class="_img data-v-3ddfa45d"></image><label class="_span data-v-3ddfa45d">班级人数</label>
+              </view>
+            </view>
+            <view class="_div data-v-3ddfa45d item">
+              <view class="_div data-v-3ddfa45d num">{{item.activity_num}}</view>
+              <view class="_div data-v-3ddfa45d title">
+                <image src="/teacher.weapp/src/images/classList/yibangka.png" class="_img data-v-3ddfa45d"></image><label class="_span data-v-3ddfa45d">激活人数</label>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-3ddfa45d no-class" wx:if="{{classNum === 0}}">
+      <image src="/teacher.weapp/src/images/classList/wubanji.png" class="_img data-v-3ddfa45d"></image>
+      <view class="_div data-v-3ddfa45d add-class-tips">您还没有班级哦，赶快去创建班级吧！</view> <button class="_button data-v-3ddfa45d weui-btn add-class-btn" type="primary" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">创建班级</button>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,12 @@
+<template name="0fe2cb84">
+  <view class="_div data-v-714f4638 container">
+    <view class="_div data-v-714f4638 form-group">
+      <view class="_div data-v-714f4638 student-name"><input type="text" maxlength="6" value="{{studentName}}" bindinput="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_input data-v-714f4638" /></view>
+    </view>
+    <view class="_div data-v-714f4638 flex-center mt40">
+      <view class="_div data-v-714f4638 to-publish" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">
+        <icon class="_icon data-v-714f4638 iconfont icon-icnext"></icon>
+      </view>
+    </view>
+  </view>
+</template>

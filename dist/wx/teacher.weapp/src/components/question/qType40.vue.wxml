@@ -1,0 +1,24 @@
+<import src="/teacher.weapp/src/components/checkBox.vue.wxml" /><template name="31b8bbec">
+  <view class="_div data-v-fb224a34 question">
+    <view class="_div data-v-fb224a34 question-title">
+      <view class="_div data-v-fb224a34 tips"></view><text class="_text data-v-fb224a34 text">{{question.qs_title}}</text>
+    </view>
+    <view class="_div data-v-fb224a34 select-question" hidden="{{!(showCart)}}">
+      <view class="_div data-v-fb224a34 flex1"><button class="_button data-v-fb224a34 weui-btn select-btn {{[!selStat ? 'plain' : '']}}" type="primary" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+          {{!selStat ? '选择' : (selStat === 1 ? '部分选' : '已选择' )}}
+        </button></view>
+      <view class="_div data-v-fb224a34 flex1 flex-center"><text class="_text data-v-fb224a34 show-detail" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">{{showDetail ? '收起详情↑' : '查看详情↓'}}</text></view>
+    </view>
+    <view class="_div data-v-fb224a34 question-detail" hidden="{{!(!showCart || showDetail)}}">
+      <view class="_div data-v-fb224a34 question-subtitle">{{question.qs_content}}</view>
+      <view class="_div data-v-fb224a34 f14 c-primary" hidden="{{!(showAnswer)}}">点击单词查看答题结果</view>
+      <view class="_div data-v-fb224a34 question-prediv">
+        <checkbox-group bindchange="handleProxy" class="_checkbox-group data-v-fb224a34 check-group flex-row" data-eventid="{{'2'}}" data-comkey="{{$k}}">
+          <view class="_div data-v-fb224a34 qs-info" wx:key="info.info_id" key="{{info.info_id}}" wx:for="{{question.info}}" wx:for-index="infoIdx" wx:for-item="info">
+            <view class="_div data-v-fb224a34 item-content" wx:key="item.item_id" key="{{item.item_id}}" wx:for="{{info.items}}" wx:for-index="itemIdx" wx:for-item="item"><template data="{{...$root[$kk+'0_'+infoIdx+'-'+itemIdx], $root}}" is="1c6a559e"></template></view>
+          </view>
+        </checkbox-group>
+      </view>
+    </view>
+  </view>
+</template>

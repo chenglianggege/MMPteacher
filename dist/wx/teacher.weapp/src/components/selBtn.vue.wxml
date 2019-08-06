@@ -1,0 +1,3 @@
+<template name="704c7330"><button class="_button data-v-629422aa weui-btn list-btn-select  {{[!selStat ? 'plain' : '']}}" type="primary" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+    {{!selStat ? '选择' : (selStat === 1 ? '部分选' : '已选择' )}}
+  </button></template>

@@ -1,0 +1,39 @@
+<template name="2a86766c">
+  <view class="_div data-v-7b3c9566 container">
+    <view class="_div data-v-7b3c9566 form-group">
+      <view class="_div data-v-7b3c9566 form-title">
+        <view class="_div data-v-7b3c9566 tips"></view><text class="_text data-v-7b3c9566 text">班级名称</text>
+      </view>
+      <view class="_div data-v-7b3c9566 class-title"><input type="text" maxlength="6" value="{{classTitle}}" bindinput="handleProxy" placeholder="请输入班级名称" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_input data-v-7b3c9566" /></view>
+    </view>
+    <view class="_div data-v-7b3c9566 form-group">
+      <view class="_div data-v-7b3c9566 form-title">
+        <view class="_div data-v-7b3c9566 tips"></view><text class="_text data-v-7b3c9566 text">班级年级</text>
+      </view>
+      <view class="_div data-v-7b3c9566 class-grade">
+        <view class="_div data-v-7b3c9566 picker">
+          <picker bindchange="handleProxy" value="{{grade}}" range="{{grades}}" range-key="name" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_picker data-v-7b3c9566">
+            <view class="_view data-v-7b3c9566">{{grades[grade].name}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-7b3c9566 form-group">
+      <view class="_div data-v-7b3c9566 form-title">
+        <view class="_div data-v-7b3c9566 tips"></view><text class="_text data-v-7b3c9566 text">班级年度</text>
+      </view>
+      <view class="_div data-v-7b3c9566 class-grade">
+        <view class="_div data-v-7b3c9566 picker">
+          <picker bindchange="handleProxy" value="{{year}}" range="{{years}}" data-eventid="{{'2'}}" data-comkey="{{$k}}" class="_picker data-v-7b3c9566">
+            <view class="_view data-v-7b3c9566">{{years[year]}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-7b3c9566 flex-center mt40">
+      <view class="_div data-v-7b3c9566 to-publish" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}">
+        <icon class="_icon data-v-7b3c9566 iconfont icon-icnext"></icon>
+      </view>
+    </view>
+  </view>
+</template>

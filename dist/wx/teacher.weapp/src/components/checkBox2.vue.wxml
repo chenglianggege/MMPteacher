@@ -1,0 +1,6 @@
+<template name="47a77a51">
+  <view wx:if="{{isChecked || showCart}}" class="_div data-v-a8763ed2 checkbox-item {{[playUrl == item.source_content ? 'onplay' : '']}}"><label class="_label data-v-a8763ed2 checkbox">
+      <checkbox value="{{value}}" checked="{{isChecked}}" disabled="{{disabled || !showCart}}" hidden="{{!(showCart)}}" class="_checkbox data-v-a8763ed2" /> <text class="_text data-v-a8763ed2 f12" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">{{item.item_content}}</text></label>
+    <icon wx:if="{{item.source_content}}" class="_icon data-v-a8763ed2 iconfont icon-laba" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}"></icon>
+  </view>
+</template>

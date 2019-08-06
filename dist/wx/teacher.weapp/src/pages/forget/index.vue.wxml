@@ -1,0 +1,19 @@
+<template name="6c91f9f6">
+  <view class="_div data-v-797f8c88 container">
+    <view class="_div data-v-797f8c88 main">
+      <view style="margin-top: 20px;width: 280px" class="_div data-v-797f8c88">
+        <view class="_div data-v-797f8c88 input-phone">
+          <icon class="_icon data-v-797f8c88 iconfont icon-mobile c-gray" style="font-size: 25px"></icon> <input value="{{formData.phone}}" bindinput="handleProxy" maxlength="11" type="number" placeholder-class="c-gray" placeholder="请输入手机号码" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_input data-v-797f8c88" />
+        </view>
+        <view class="_div data-v-797f8c88 input-phone">
+          <icon class="_icon data-v-797f8c88 iconfont icon-safe c-gray" style="font-size: 25px;"></icon> <input value="{{formData.phone_code}}" bindinput="handleProxy" class="_input data-v-797f8c88 phone-code" maxlength="4" type="number" placeholder-class="c-gray" placeholder="请输入验证码" data-eventid="{{'1'}}" data-comkey="{{$k}}" /> <button bindtap="handleProxy" class="_button data-v-797f8c88 weui-btn btn-send" plain type="primary" data-eventid="{{'2'}}" data-comkey="{{$k}}">{{sendTime > 0 ? sendTime + '秒后重发' : '发送验证码'}}</button>
+        </view>
+        <view class="_div data-v-797f8c88 input-phone">
+          <icon class="_icon data-v-797f8c88 iconfont icon-lock c-gray" style="font-size: 25px;"></icon> <input value="{{formData.password}}" bindinput="handleProxy" type="password" placeholder-class="c-gray" placeholder="请输入新密码" data-eventid="{{'3'}}" data-comkey="{{$k}}" class="_input data-v-797f8c88" />
+        </view> <button bindtap="handleProxy" class="_button data-v-797f8c88 weui-btn btn-login" type="primary" style data-eventid="{{'4'}}" data-comkey="{{$k}}">
+          <icon class="_icon data-v-797f8c88 iconfont icon-icnext" style="font-size: 40px"></icon>
+        </button>
+      </view>
+    </view>
+  </view>
+</template>

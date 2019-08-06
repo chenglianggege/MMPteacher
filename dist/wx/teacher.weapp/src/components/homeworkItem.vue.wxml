@@ -1,0 +1,69 @@
+<template name="60211b9e">
+  <view class="_div data-v-49301e2b homework-item">
+    <view class="_div data-v-49301e2b homework-title">
+      <view class="_div data-v-49301e2b item-status {{[  item.status == 100 ? 'status-unbegin' : '',  item.status == 101 ? 'status-begin' : '',  item.status == 200 ? 'status-end' : '']}}">
+        {{item.status == 100 ? '未开始' : ''}}
+        {{item.status == 101 ? '进行中' : ''}}
+        {{item.status == 200 ? '已结束' : ''}}
+      </view>
+      <view class="_div data-v-49301e2b title"><text class="_text data-v-49301e2b">{{item.exam_title}}</text></view>
+    </view>
+    <view class="_div data-v-49301e2b homework-time">{{beginTime}} ~ {{endTime}}</view>
+    <view class="_div data-v-49301e2b warp-line"></view>
+    <view class="_div data-v-49301e2b class-info">
+      <image src="/teacher.weapp/src/images/classList/banjiicon.png" class="_img data-v-49301e2b"></image>
+      <view class="_div data-v-49301e2b title">{{item.class_name}}</view>
+    </view>
+    <view class="_div data-v-49301e2b homework-info"> 完成人数：<text class="_text data-v-49301e2b f14 mr10 c-primary">{{item.finish_user_num}}/{{item.exam_user_num}}</text> 平均分：{{item.average_score}}/{{item.paper_score}}
+    </view>
+    <view class="_div data-v-49301e2b warp-line"></view>
+    <view class="_div data-v-49301e2b menus" wx:if="{{item.status == 100}}">
+      <view class="_div data-v-49301e2b menu" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+        <image src="/teacher.weapp/src/images/homeworkItem/xiangqing.png" class="_img data-v-49301e2b"></image>
+        <view class="_div data-v-49301e2b">预览</view>
+      </view>
+      <view class="_div data-v-49301e2b menu" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">
+        <image src="/teacher.weapp/src/images/homeworkItem/xiugai.png" class="_img data-v-49301e2b"></image>
+        <view class="_div data-v-49301e2b">修改</view>
+      </view>
+      <view class="_div data-v-49301e2b menu" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">
+        <image src="/teacher.weapp/src/images/homeworkItem/chehui.png" class="_img data-v-49301e2b"></image>
+        <view class="_div data-v-49301e2b">撤回</view>
+      </view>
+      <view class="_div data-v-49301e2b menu"></view>
+    </view>
+    <view class="_div data-v-49301e2b menus" wx:if="{{item.status == 101}}">
+      <view class="_div data-v-49301e2b menu" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}">
+        <image src="/teacher.weapp/src/images/homeworkItem/xiangqing.png" class="_img data-v-49301e2b"></image>
+        <view class="_div data-v-49301e2b">作业详情</view>
+      </view>
+      <view class="_div data-v-49301e2b menu" bindtap="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}">
+        <image src="/teacher.weapp/src/images/homeworkItem/jiangping.png" class="_img data-v-49301e2b"></image>
+        <view class="_div data-v-49301e2b">内容讲评</view>
+      </view>
+      <view class="_div data-v-49301e2b menu" bindtap="handleProxy" data-eventid="{{'5'}}" data-comkey="{{$k}}">
+        <image src="/teacher.weapp/src/images/homeworkItem/xiugai.png" class="_img data-v-49301e2b"></image>
+        <view class="_div data-v-49301e2b">修改</view>
+      </view>
+      <view class="_div data-v-49301e2b menu" bindtap="handleProxy" data-eventid="{{'6'}}" data-comkey="{{$k}}">
+        <image src="/teacher.weapp/src/images/homeworkItem/chehui.png" class="_img data-v-49301e2b"></image>
+        <view class="_div data-v-49301e2b">撤回</view>
+      </view>
+    </view>
+    <view class="_div data-v-49301e2b menus" wx:if="{{item.status == 200}}">
+      <view class="_div data-v-49301e2b menu" bindtap="handleProxy" data-eventid="{{'7'}}" data-comkey="{{$k}}">
+        <image src="/teacher.weapp/src/images/homeworkItem/xiangqing.png" class="_img data-v-49301e2b"></image>
+        <view class="_div data-v-49301e2b">作业详情</view>
+      </view>
+      <view class="_div data-v-49301e2b menu" bindtap="handleProxy" data-eventid="{{'8'}}" data-comkey="{{$k}}">
+        <image src="/teacher.weapp/src/images/homeworkItem/jiangping.png" class="_img data-v-49301e2b"></image>
+        <view class="_div data-v-49301e2b">内容讲评</view>
+      </view>
+      <view class="_div data-v-49301e2b menu" bindtap="handleProxy" data-eventid="{{'9'}}" data-comkey="{{$k}}">
+        <image src="/teacher.weapp/src/images/homeworkItem/xiugai.png" class="_img data-v-49301e2b"></image>
+        <view class="_div data-v-49301e2b">修改</view>
+      </view>
+      <view class="_div data-v-49301e2b menu"></view>
+    </view>
+  </view>
+</template>

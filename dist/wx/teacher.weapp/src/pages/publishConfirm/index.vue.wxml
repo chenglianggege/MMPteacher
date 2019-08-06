@@ -1,0 +1,58 @@
+<template name="050c708c">
+  <view class="_div data-v-4a66e180 container">
+    <view class="_div data-v-4a66e180 form-group">
+      <view class="_div data-v-4a66e180 form-title">
+        <view class="_div data-v-4a66e180 tips"></view><text class="_text data-v-4a66e180 text">布置班级</text>
+      </view>
+      <view class="_div data-v-4a66e180 class-group"><button wx:key="classIdx" key="{{classIdx}}" class="_button data-v-4a66e180 weui-btn class-title {{[!item.selected ? 'plain' : '']}}" type="primary" disabled="{{item.student_num == 0}}" bindtap="handleProxy" data-eventid="{{'0_'+classIdx}}" data-comkey="{{$k}}" wx:for="{{classList}}" wx:for-index="classIdx" wx:for-item="item">
+          {{item.class_name}}({{item.student_num}}人) </button></view>
+    </view>
+    <view class="_div data-v-4a66e180 form-group">
+      <view class="_div data-v-4a66e180 form-title">
+        <view class="_div data-v-4a66e180 tips"></view><text class="_text data-v-4a66e180 text">发布时间</text> <button class="_button data-v-4a66e180 weui-btn class-title {{[!(submitForm.start_type == 1) ? 'plain' : '']}}" type="primary" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}"> 立即开始 </button> <button class="_button data-v-4a66e180 weui-btn class-title {{[!(submitForm.start_type == 2) ? 'plain' : '']}}" type="primary" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}"> 指定时间 </button>
+      </view>
+    </view>
+    <view class="_div data-v-4a66e180 form-group" wx:if="{{submitForm.start_type == 2}}">
+      <view class="_div data-v-4a66e180 form-title">
+        <view class="_div data-v-4a66e180 tips"></view><text class="_text data-v-4a66e180 text">指定时间</text>
+        <view class="_div data-v-4a66e180 sel-data">
+          <picker value="{{start_data}}" mode="date" bindchange="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}" class="_picker data-v-4a66e180">
+            <view class="_view data-v-4a66e180 picker f14">{{start_data}}</view>
+          </picker>
+        </view>
+        <view class="_div data-v-4a66e180 sel-time">
+          <picker value="{{start_time}}" mode="time" bindchange="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}" class="_picker data-v-4a66e180">
+            <view class="_view data-v-4a66e180 picker f14">{{start_time}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-4a66e180 form-group">
+      <view class="_div data-v-4a66e180 form-title">
+        <view class="_div data-v-4a66e180 tips"></view><text class="_text data-v-4a66e180 text">截止时间</text>
+        <view class="_div data-v-4a66e180 sel-data">
+          <picker value="{{finish_data}}" mode="date" bindchange="handleProxy" data-eventid="{{'5'}}" data-comkey="{{$k}}" class="_picker data-v-4a66e180">
+            <view class="_view data-v-4a66e180 picker f14">{{finish_data}}</view>
+          </picker>
+        </view>
+        <view class="_div data-v-4a66e180 sel-time">
+          <picker value="{{finish_time}}" mode="time" bindchange="handleProxy" data-eventid="{{'6'}}" data-comkey="{{$k}}" class="_picker data-v-4a66e180">
+            <view class="_view data-v-4a66e180 picker f14">{{finish_time}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-4a66e180 form-group">
+      <view class="_div data-v-4a66e180 form-title">
+        <view class="_div data-v-4a66e180 tips"></view><text class="_text data-v-4a66e180 text">作业名称</text>
+      </view>
+      <view class="_div data-v-4a66e180 exam-title"><input maxlength="50" type="text" value="{{submitForm.exam_title}}" bindinput="handleProxy" data-eventid="{{'7'}}" data-comkey="{{$k}}" class="_input data-v-4a66e180" /></view>
+    </view>
+    <view class="_div data-v-4a66e180 flex-center c-primary f14 ml5 mt10 cartInfo" wx:if="{{!paperId && !examId}}"><label class="_span data-v-4a66e180 mr10">题目数量：{{cartNum}}题</label> <label class="_span data-v-4a66e180 mr10">总分：{{score}}分</label> <label class="_span data-v-4a66e180">预计时间：{{duration}}分钟</label></view>
+    <view class="_div data-v-4a66e180 flex-center mt40">
+      <view class="_div data-v-4a66e180 to-publish" bindtap="handleProxy" data-eventid="{{'8'}}" data-comkey="{{$k}}">
+        <icon class="_icon data-v-4a66e180 iconfont icon-icnext"></icon>
+      </view>
+    </view>
+  </view>
+</template>

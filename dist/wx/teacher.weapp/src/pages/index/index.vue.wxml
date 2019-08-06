@@ -1,0 +1,18 @@
+<template name="cf654302">
+  <view class="_div data-v-ead5e40e container">
+    <view class="_div data-v-ead5e40e main">
+      <image class="_img data-v-ead5e40e logo" src="/teacher.weapp/src/images/logo.jpg" background-size="cover"></image>
+      <view class="_div data-v-ead5e40e logo-title c-gray">为老师节省时间的小程序</view>
+      <view style="margin-top: 20px;width: 250px" class="_div data-v-ead5e40e">
+        <view class="_div data-v-ead5e40e input-phone">
+          <icon class="_icon data-v-ead5e40e iconfont icon-mobile c-gray" style="font-size: 25px"></icon> <input value="{{formData.phone}}" bindinput="handleProxy" maxlength="11" type="number" placeholder-class="c-gray" placeholder="请输入手机号码" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_input data-v-ead5e40e" />
+        </view>
+        <view class="_div data-v-ead5e40e input-phone">
+          <icon class="_icon data-v-ead5e40e iconfont icon-lock c-gray" style="font-size: 25px;"></icon> <input value="{{formData.password}}" bindinput="handleProxy" maxlength="20" type="password" placeholder-class="c-gray" placeholder="请输入登录密码" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_input data-v-ead5e40e" />
+        </view> <button bindtap="handleProxy" class="_button data-v-ead5e40e weui-btn btn-login" type="primary" style data-eventid="{{'2'}}" data-comkey="{{$k}}">
+          <icon class="_icon data-v-ead5e40e iconfont icon-icnext" style="font-size: 40px"></icon>
+        </button>
+      </view> <text class="_text data-v-ead5e40e c-primary" style="font-size: 14px; margin-top: 30px" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}">忘记密码</text>
+    </view>
+  </view>
+</template>

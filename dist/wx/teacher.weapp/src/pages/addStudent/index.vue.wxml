@@ -1,0 +1,21 @@
+<template name="288471ba">
+  <view class="_div data-v-83ca982e container">
+    <view class="_div data-v-83ca982e form-group">
+      <view class="_div data-v-83ca982e form-title">
+        <view class="_div data-v-83ca982e tips"></view><text class="_text data-v-83ca982e text">请输入学生/家长的手机号码</text>
+      </view>
+      <view class="_div data-v-83ca982e phone-num"><input value="{{phoneNum}}" bindinput="handleProxy" maxlength="11" type="number" placeholder="请输入11位手机号码" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_input data-v-83ca982e" /></view>
+    </view>
+    <view class="_div data-v-83ca982e form-group">
+      <view class="_div data-v-83ca982e form-title">
+        <view class="_div data-v-83ca982e tips"></view><text class="_text data-v-83ca982e text">备注姓名</text>
+      </view>
+      <view class="_div data-v-83ca982e student-name"><input type="text" maxlength="6" value="{{studentName}}" bindinput="handleProxy" placeholder="请输入备注姓名(2-6个汉字)" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_input data-v-83ca982e" /></view>
+    </view>
+    <view class="_div data-v-83ca982e flex-center mt40">
+      <view class="_div data-v-83ca982e to-publish" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">
+        <icon class="_icon data-v-83ca982e iconfont icon-icnext"></icon>
+      </view>
+    </view>
+  </view>
+</template>

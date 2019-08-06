@@ -1,0 +1,9 @@
+@import "../../common/vendor.wxss";
+
+.container.data-v-a64801be {
+  margin: 20rpx;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  align-items: center;
+}

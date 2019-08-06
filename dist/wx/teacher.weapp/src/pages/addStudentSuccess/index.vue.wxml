@@ -1,0 +1,12 @@
+<template name="e98df394">
+  <view class="_div data-v-f23962a0 container">
+    <view style="margin-top: 50px" class="_div data-v-f23962a0">
+      <icon type="success" size="70" class="_icon data-v-f23962a0"></icon>
+    </view>
+    <view style="margin-top: 30px;font-size: 18px" class="_div data-v-f23962a0">添加学生成功</view>
+    <view style="margin-top: 40px;" class="_div data-v-f23962a0"><button class="_button data-v-f23962a0 weui-btn btn-next" type="primary" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">继续添加学生</button></view>
+    <view style="margin-top: 30px;" class="_div data-v-f23962a0"><button class="_button data-v-f23962a0 weui-btn btn-next" type="primary" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">返回班级详情</button></view>
+    <view style="margin-top: 30px;" class="_div data-v-f23962a0"><button class="_button data-v-f23962a0 weui-btn btn-next" type="primary" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">返回班级列表</button></view>
+    <view style="margin-top: 30px;" class="_div data-v-f23962a0"><button class="_button data-v-f23962a0 weui-btn btn-next" type="primary" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}">返回首页</button></view>
+  </view>
+</template>

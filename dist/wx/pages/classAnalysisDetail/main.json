@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "ec-canvas": "../../../static/ec-canvas/ec-canvas"
+  },
+  "disableScroll": true
+}

@@ -1,0 +1,14 @@
+@import "../../common/vendor.wxss";
+
+.container.data-v-f669db80 {
+  margin: 20rpx;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  align-items: center;
+}
+.td.data-v-f669db80 {
+  flex: 1;
+  overflow: hidden;
+  text-align: center;
+}

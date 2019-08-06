@@ -1,0 +1,1 @@
+<import src="/teacher.weapp/src/pages/classAnalysis/index.vue.wxml" /><template is="ad62acbe" data="{{ ...$root['0'], $root }}"/>

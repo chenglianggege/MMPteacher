@@ -1,0 +1,25 @@
+<template name="59057cc6">
+  <view class="_div data-v-f669db80 container">
+    <view class="_div data-v-f669db80 table">
+      <view class="_div data-v-f669db80 thead">
+        <view class="_div data-v-f669db80 tr">
+          <view class="_div data-v-f669db80 td">姓名</view>
+          <view class="_div data-v-f669db80 td">排名</view>
+          <view class="_div data-v-f669db80 td">得分</view>
+          <view class="_div data-v-f669db80 td">学生作答</view>
+        </view>
+      </view>
+      <view class="_div data-v-f669db80 tbody">
+        <view class="_div data-v-f669db80 tr {{[playUrl == answer.user_answer ? 'c-primary' : '']}}" bindtap="handleProxy" wx:key="idx" key="{{idx}}" data-eventid="{{'0_'+idx}}" data-comkey="{{$k}}" wx:for="{{answers}}" wx:for-index="idx" wx:for-item="answer">
+          <view class="_div data-v-f669db80 td">{{answer.student_name}}</view>
+          <view class="_div data-v-f669db80 td">{{idx + 1}}</view>
+          <view class="_div data-v-f669db80 td">{{answer.exam_score}}</view>
+          <view class="_div data-v-f669db80 td">
+            <icon wx:if="{{answer.answer_type == 2}}" class="_icon data-v-f669db80 iconfont {{onLoading && playUrl == answer.user_answer  ? 'icon-spin icon-loadc'  : 'icon-laba'}}"></icon>
+            <view wx:if="{{answer.answer_type != 2}}" class="_div data-v-f669db80 {{answer.exam_score > 0 ? 'c-green' : 'c-red'}}">{{answer.user_answer}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,42 @@
+@import "../../common/vendor.wxss";
+
+.main.data-v-797f8c88 {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  align-items: center;
+}
+._input.data-v-797f8c88 {
+  font-size: 32rpx;
+  padding-left: 20rpx;
+  width: 400rpx;
+}
+.input-phone.data-v-797f8c88 {
+  height: 70rpx;
+  border-bottom-style: solid;
+  border-bottom-width: 2rpx;
+  border-bottom-color: #9f9f9f;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 40rpx;
+}
+.btn-login.data-v-797f8c88 {
+  height: 96rpx;
+  line-height: 80rpx;
+  font-size: 80rpx;
+  margin-top: 80rpx;
+}
+.phone-code.data-v-797f8c88 {
+  width: 200rpx;
+}
+.btn-send.data-v-797f8c88 {
+  width: 200rpx;
+  font-size: 28rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin-top: 0;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}

@@ -1,0 +1,25 @@
+<import src="/teacher.weapp/src/components/question/qType1.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType3.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType4.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType5.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType9.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType12.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType13.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType16.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType17.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType18.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType21.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType26.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType37.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType38.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType40.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType41.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType42.vue.wxml" />
+<import src="/teacher.weapp/src/components/question/qType1901.vue.wxml" />
+<import src="/teacher.weapp/src/components/listFooter.vue.wxml" /><template name="45d226b9">
+  <view class="_div data-v-3819d633 container">
+    <view class="_div data-v-3819d633 c-primary f14 ml5 mt10 cartInfo" wx:if="{{!paperId && !examId}}"><label class="_span data-v-3819d633 mr10">题目数量：{{cartNum}}题</label> <label class="_span data-v-3819d633 mr10">总分：{{score}}分</label> <label class="_span data-v-3819d633">预计时间：{{duration}}分钟</label></view>
+    <view class="_div data-v-3819d633 line"></view>
+    <view class="_div data-v-3819d633 questions" wx:key="index" key="{{index}}" wx:for="{{paperDetail}}" wx:for-index="index" wx:for-item="question"><template wx:if="{{question.qs_type == 1}}" data="{{...$root[$kk+'0_'+index], $root}}" is="6037d31e"></template> <template wx:if="{{question.qs_type == 3}}" data="{{...$root[$kk+'1_'+index], $root}}" is="5fff751a"></template> <template wx:if="{{question.qs_type == 4}}" data="{{...$root[$kk+'2_'+index], $root}}" is="5fe34618"></template> <template wx:if="{{question.qs_type == 5}}" data="{{...$root[$kk+'3_'+index], $root}}" is="5fc71716"></template> <template wx:if="{{question.qs_type == 9}}" data="{{...$root[$kk+'4_'+index], $root}}" is="5f565b0e"></template> <template wx:if="{{question.qs_type == 12}}" data="{{...$root[$kk+'5_'+index], $root}}" is="2cb66111"></template> <template wx:if="{{question.qs_type == 13}}" data="{{...$root[$kk+'6_'+index], $root}}" is="2cc47892"></template> <template wx:if="{{question.qs_type == 16}}" data="{{...$root[$kk+'7_'+index], $root}}" is="2ceebf15"></template> <template wx:if="{{question.qs_type == 17}}" data="{{...$root[$kk+'8_'+index], $root}}" is="2cfcd696"></template> <template wx:if="{{question.qs_type == 18}}" data="{{...$root[$kk+'9_'+index], $root}}" is="2d0aee17"></template> <template wx:if="{{question.qs_type == 21}}" data="{{...$root[$kk+'10_'+index], $root}}" is="2e5d222f"></template> <template wx:if="{{question.qs_type == 26}}" data="{{...$root[$kk+'11_'+index], $root}}" is="2ea397b4"></template> <template wx:if="{{question.qs_type == 37}}" data="{{...$root[$kk+'12_'+index], $root}}" is="306687d4"></template> <template wx:if="{{question.qs_type == 38}}" data="{{...$root[$kk+'13_'+index], $root}}" is="30749f55"></template> <template wx:if="{{question.qs_type == 40}}" data="{{...$root[$kk+'14_'+index], $root}}" is="31b8bbec"></template> <template wx:if="{{question.qs_type == 41}}" data="{{...$root[$kk+'15_'+index], $root}}" is="31c6d36d"></template> <template wx:if="{{question.qs_type == 42}}" data="{{...$root[$kk+'16_'+index], $root}}" is="31d4eaee"></template> <template wx:if="{{question.qs_type == 1901}}" data="{{...$root[$kk+'17_'+index], $root}}" is="4a6b6319"></template></view> <template wx:if="{{!paperId}}" data="{{...$root[$kk+'18'], $root}}" is="23f3c4e7"></template>
+  </view>
+</template>

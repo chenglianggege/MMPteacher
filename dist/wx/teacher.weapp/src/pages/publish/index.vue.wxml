@@ -1,0 +1,45 @@
+<import src="/teacher.weapp/src/components/selBtn.vue.wxml" />
+<import src="/teacher.weapp/src/components/listFooter.vue.wxml" /><template name="8bdd2408">
+  <view class="_div data-v-392b26f6 container">
+    <view class="_div data-v-392b26f6 groups">
+      <view class="_div data-v-392b26f6 item-group">
+        <view class="_div data-v-392b26f6 item {{[grade === 7 ? 'item-select' : '']}}" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">七年级</view>
+        <view class="_div data-v-392b26f6 item {{[grade === 8 ? 'item-select' : '']}}" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">八年级</view>
+        <view class="_div data-v-392b26f6 item {{[grade === 9 ? 'item-select' : '']}}" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">九年级</view>
+      </view>
+      <view class="_div data-v-392b26f6 item-group">
+        <view class="_div data-v-392b26f6 item {{[moduleId === 4 ? 'item-select' : '']}}" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}">同步跟读</view>
+        <view class="_div data-v-392b26f6 item {{[moduleId === 3 ? 'item-select' : '']}}" bindtap="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}">听说专项</view>
+        <view class="_div data-v-392b26f6 item {{[moduleId === 2 ? 'item-select' : '']}}" bindtap="handleProxy" data-eventid="{{'5'}}" data-comkey="{{$k}}">模拟试卷</view>
+      </view>
+      <view class="_div data-v-392b26f6 item-group" wx:if="{{moduleId === 3}}">
+        <view wx:key="item.qs_type_id" key="{{item.qs_type_id}}" class="_div data-v-392b26f6 item {{[qsType == item.qs_type_id ? 'item-select' : '']}}" bindtap="handleProxy" data-eventid="{{'6_'+index}}" data-comkey="{{$k}}" wx:for="{{qsTypeList}}" wx:for-index="index" wx:for-item="item">
+          {{item.qs_type_name}}
+        </view>
+      </view>
+      <view class="_div data-v-392b26f6 item-group" wx:if="{{moduleId === 4}}">
+        <view class="_div data-v-392b26f6 item {{[tbType === 4 ? 'item-select' : '']}}" bindtap="handleProxy" data-eventid="{{'7'}}" data-comkey="{{$k}}">单词跟读</view>
+        <view class="_div data-v-392b26f6 item {{[tbType === 5 ? 'item-select' : '']}}" bindtap="handleProxy" data-eventid="{{'8'}}" data-comkey="{{$k}}">课文跟读</view>
+      </view>
+    </view>
+    <scroll-div scroll-y enable-back-to-top class="_scroll-div data-v-392b26f6 list-group">
+      <view class="_div data-v-392b26f6 list-item" wx:key="item.paper_id" key="{{item.paper_id}}" wx:for="{{paperList}}" wx:for-index="index" wx:for-item="item"><text class="_text data-v-392b26f6 list-content">{{item.paper_title}}</text>
+        <view class="_div data-v-392b26f6 list-option"><text class="_text data-v-392b26f6 list-btn-detail c-primary" bindtap="handleProxy" data-eventid="{{'9_'+index}}" data-comkey="{{$k}}">详情</text> <template bindtap="handleProxy" data-eventid="{{'10_'+index}}" data-comkey="{{$k}}" data="{{...$root[$kk+'0_'+index], $root}}" is="704c7330"></template></view>
+      </view>
+      <view class="_div data-v-392b26f6 mt20"><template data="{{...$root[$kk+'1'], $root}}" is="23f3c4e7"></template></view>
+    </scroll-div>
+    <view class="_div data-v-392b26f6 footer-bar">
+      <view class="_div data-v-392b26f6 clear-all bar-item" bindtap="handleProxy" data-eventid="{{'11'}}" data-comkey="{{$k}}">
+        <icon class="_icon data-v-392b26f6 iconfont icon-ziyuan ic-clear-all"></icon>清空试题
+      </view>
+      <view class="_div data-v-392b26f6 qs-num bar-item" bindtap="handleProxy" data-eventid="{{'12'}}" data-comkey="{{$k}}">共{{cartNum}}题</view>
+      <view class="_div data-v-392b26f6 to-publish bar-item" bindtap="handleProxy" data-eventid="{{'13'}}" data-comkey="{{$k}}">
+        <view class="_div data-v-392b26f6 mr10">
+          <view class="_div data-v-392b26f6 title1">布置作业</view>
+          <view class="_div data-v-392b26f6 title2">预计{{duration}}分钟完成</view>
+        </view>
+        <icon class="_icon data-v-392b26f6 iconfont icon-icnext ic-to-publish"></icon>
+      </view>
+    </view>
+  </view>
+</template>

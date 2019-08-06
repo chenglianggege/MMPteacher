@@ -1,0 +1,55 @@
+<template name="1d5cf9e8">
+  <view class="_div data-v-fff719a4 container" wx:if="{{userInfo}}">
+    <view class="_div data-v-fff719a4 banner">
+      <image src="{{STATIC_URL + '/assets/image/banner_twxapp1.2.jpg?key=' + randkey}}" class="_img data-v-fff719a4"></image>
+    </view>
+    <view class="_div data-v-fff719a4 body">
+      <view class="_div data-v-fff719a4 header">
+        <view class="_div data-v-fff719a4 teacher">
+          <image class="_img data-v-fff719a4 teacher-avatar" wx:if="{{userInfo.user_avatar}}" src="{{userInfo.user_avatar + '?x-oss-process=image/resize,h_100'}}"></image>
+          <image class="_img data-v-fff719a4 teacher-avatar" wx:else src="/teacher.weapp/src/images/touixang.jpg"></image>
+          <view class="_div data-v-fff719a4 teacher-info"><text class="_text data-v-fff719a4 teacher-name">{{userInfo.user_name}} 老师</text> <text class="_text data-v-fff719a4 teacher-school c-gray">{{userInfo.school_name}}</text></view>
+        </view>
+        <view class="_div data-v-fff719a4 btn-logout" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+          <image src="/teacher.weapp/src/images/shezhi.png" class="_img data-v-fff719a4 logout"></image> <text class="_text data-v-fff719a4">设置</text>
+        </view>
+      </view>
+      <view class="_div data-v-fff719a4 main">
+        <view class="_div data-v-fff719a4 btn-group">
+          <view class="_div data-v-fff719a4 btn-main mt10" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">
+            <image src="/teacher.weapp/src/images/buzhi.png" class="_img data-v-fff719a4 btn-img"></image>
+            <view class="_div data-v-fff719a4 btn-title">
+              <view class="_div data-v-fff719a4 title">布置作业</view>
+              <view class="_div data-v-fff719a4 desc">自由选题、在线发布作业与练习</view>
+            </view>
+            <icon class="_icon data-v-fff719a4 iconfont icon-more"></icon>
+          </view>
+          <view class="_div data-v-fff719a4 btn-main mt10" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">
+            <image src="/teacher.weapp/src/images/jiancha.png" class="_img data-v-fff719a4 btn-img"></image>
+            <view class="_div data-v-fff719a4 btn-title">
+              <view class="_div data-v-fff719a4 title">检查作业</view>
+              <view class="_div data-v-fff719a4 desc">成绩概况、分数统计、作答详情</view>
+            </view>
+            <icon class="_icon data-v-fff719a4 iconfont icon-more"></icon>
+          </view>
+          <view class="_div data-v-fff719a4 btn-main mt10" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}">
+            <image src="/teacher.weapp/src/images/xueqing.png" class="_img data-v-fff719a4 btn-img"></image>
+            <view class="_div data-v-fff719a4 btn-title">
+              <view class="_div data-v-fff719a4 title">学情分析</view>
+              <view class="_div data-v-fff719a4 desc">班级增改与学生信息查询、变更</view>
+            </view>
+            <icon class="_icon data-v-fff719a4 iconfont icon-more"></icon>
+          </view>
+          <view class="_div data-v-fff719a4 btn-main mt10" bindtap="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}">
+            <image src="/teacher.weapp/src/images/banji.png" class="_img data-v-fff719a4 btn-img"></image>
+            <view class="_div data-v-fff719a4 btn-title">
+              <view class="_div data-v-fff719a4 title">班级管理</view>
+              <view class="_div data-v-fff719a4 desc">班级增改与学生信息查询、变更</view>
+            </view>
+            <icon class="_icon data-v-fff719a4 iconfont icon-more"></icon>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,21 @@
+<template name="5cc05da1">
+  <view class="_div data-v-19b20332 container">
+    <view class="_div data-v-19b20332 ml10">
+      <view class="_div data-v-19b20332 f14 mt5">作业完成度: {{completeRate}}%</view>
+      <view class="_div data-v-19b20332 f14 mt5">平均作答得分率: {{scoreRate}}%</view>
+    </view>
+    <view class="_div data-v-19b20332 warp-line mt10"></view>
+    <view class="_div data-v-19b20332 ec-line" wx:if="{{!loading && scoreDataNum > 0}}">
+      <view class="_div data-v-19b20332 ec-div">
+        <ec-canvas class="_ec-canvas data-v-19b20332 ec-canvas" ec="{{scoreData}}"></ec-canvas>
+      </view>
+      <view class="_div data-v-19b20332 f14 mt10" style="text-align: center">
+        <view class="_div data-v-19b20332">作答得分率</view>
+      </view>
+    </view>
+    <view class="_div data-v-19b20332 no-class" wx:if="{{scoreDataNum == 0}}">
+      <image src="/teacher.weapp/src/images/classAnalysisDetail/wushuju.png" class="_img data-v-19b20332"></image>
+      <view class="_div data-v-19b20332 add-class-tips">这个学生一直没做作业...</view>
+    </view>
+  </view>
+</template>

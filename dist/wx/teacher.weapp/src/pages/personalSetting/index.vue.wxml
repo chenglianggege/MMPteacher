@@ -1,0 +1,19 @@
+<template name="77eab19d">
+  <view class="_div data-v-6ebe5ed2 container">
+    <view class="_div data-v-6ebe5ed2 menu-list">
+      <view class="_div data-v-6ebe5ed2 menu-item" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+        <icon class="_icon data-v-6ebe5ed2 iconfont icon-bianji ml10"></icon> <text class="_text data-v-6ebe5ed2">修改姓名</text>
+        <icon class="_icon data-v-6ebe5ed2 iconfont icon-more"></icon>
+      </view>
+      <view class="_div data-v-6ebe5ed2 menu-item" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">
+        <icon class="_icon data-v-6ebe5ed2 iconfont icon-mobile ml10"></icon> <text class="_text data-v-6ebe5ed2">修改手机号码</text>
+        <icon class="_icon data-v-6ebe5ed2 iconfont icon-more"></icon>
+      </view>
+      <view class="_div data-v-6ebe5ed2 menu-item" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">
+        <icon class="_icon data-v-6ebe5ed2 iconfont icon-lock ml10"></icon> <text class="_text data-v-6ebe5ed2">重置密码</text>
+        <icon class="_icon data-v-6ebe5ed2 iconfont icon-more"></icon>
+      </view>
+      <view class="_div data-v-6ebe5ed2 menu-item mt10" style="text-align: center" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}"><text class="_text data-v-6ebe5ed2">退出登录</text></view>
+    </view>
+  </view>
+</template>

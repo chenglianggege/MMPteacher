@@ -1,0 +1,259 @@
+<template>
+  <div class="container" v-if="classDetail">
+    <div class="btn-group">
+      <button class="weui-btn btn" type="primary" @click="toAddStudent">添加学生</button>
+      <button class="weui-btn btn" type="primary" @click="toEditClass">修改班级</button>
+      <button class="weui-btn btn" type="primary" @click="delClass">删除班级</button>
+    </div>
+    <div class="student-list">
+      <div class="tips-title">
+        <div class="tips"></div><text class="text">成员（点击姓名编辑）</text>
+        <text class="text text2">激活人数: {{classDetail.activity_num}}/{{classDetail.student_num}}人</text>
+      </div>
+      <div class="table">
+        <div class="thead">
+          <div class="tr">
+            <div class="td">姓名</div>
+            <div class="td">头像</div>
+            <div class="td">电话</div>
+            <div class="td">绑卡状态</div>
+          </div>
+        </div>
+        <div class="tbody">
+          <div class="tr" v-for="student in classDetail.students" :key="index">
+            <div class="td c-primary" @click="editStudent(student)">{{student.student_name}}</div>
+            <div class="td" v-if="student.user_avatar"><img class="student-avatar" :src="STATIC_URL + student.user_avatar + '?x-oss-process=image/resize,h_100'"/></div>
+            <div class="td" v-else><img class="student-avatar" src="./../../images/df_student.png"/></div>
+            <div class="td">{{student.student_phone}}</div>
+            <div class="td" :class="{'c-red': student.bindStatus != 1}">{{BIND_STATUS[student.bindStatus]}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import syncFun from '@/utils/syncFun.js'
+import {formatDate} from '@/utils/date.js'
+import mainMixin from '@/mixin/mainMixin.js'
+
+export default {
+  data () {
+    return {
+      classId: 0,
+      classDetail: null,
+      STATIC_URL: '',
+      BIND_STATUS: {1: '已绑卡', 2: '已过期', 3: '未绑定'}
+    }
+  },
+  mixins: [mainMixin],
+  components: {
+  },
+  watch: {
+
+  },
+  methods: {
+    editStudent(student) {
+      let _this = this
+      wx.showActionSheet({
+        itemList: ['修改备注姓名', '移出班级'],
+        success(res) {
+          if (res.tapIndex === 0) {
+            _this.toEditStudent(student)
+          }
+          if (res.tapIndex === 1) {
+            _this.removeStudent(student)
+          }
+        }
+      })
+    },
+    async removeStudent(student){
+      let studentId = student.student_id
+      let ok = await syncFun.showModal({
+        title: '移除班级',
+        content: '确认将该学生移出本班？',
+        showCancel: true,
+        confirmColor: '#009efa'
+      })
+      if (ok.confirm){
+        try {
+          wx.showLoading({title: '删除中...', mask: true})
+          let ret = await syncFun.request({
+            url: this.globalData.apiBaseUrl + '/teacher/sclass/remove?token=' + this.globalData.token,
+            data: {class_id: this.classId, student_id: studentId},
+            method: 'POST'
+          })
+          wx.hideLoading();
+          if (ret.data.retCode !== 0) {
+            wx.showToast({ title: ret.data.retMsg, icon: 'none', })
+            return
+          }
+          this.getClassDetail()
+
+        } catch (e) {
+          console.log(e)
+          wx.hideLoading();
+          wx.showToast({ title: '网络通信错误！', icon: 'none', })
+        } finally {
+
+        }
+
+      }
+    },
+    toEditStudent(student){
+      wx.navigateTo({ url: '/pages/editStudent/main?'
+        + 'studentId=' + student.student_id
+        + '&studentName=' + student.student_name
+      })
+    },
+    async getClassDetail(){
+      try {
+        this.classDetail = null
+        wx.showLoading({title: '加载中...', mask: true})
+        let ret = await syncFun.request({
+          url: this.globalData.apiBaseUrl + '/teacher/sclass/detail',
+          data: {token: this.globalData.token, class_id: this.classId},
+          method: 'GET'
+        })
+        wx.hideLoading();
+        if (ret.data.retCode !== 0) {
+          wx.showToast({ title: ret.data.retMsg, icon: 'none', })
+          return
+        }
+        let classDetail = ret.data.retData ? ret.data.retData : null
+        let students = classDetail.students ? classDetail.students : []
+        for (let i in students){
+          students[i].bindStatus = 1;
+          if (!students[i].expire_status){
+            students[i].bindStatus = 3;
+            if (students[i].expire_time){
+              students[i].bindStatus = 2;
+            }
+          }
+        }
+
+        students.sort(function (objectN, objectM) {
+          let valueN = objectN['bindStatus']
+          let valueM = objectM['bindStatus']
+          if (valueN < valueM) return 1
+          else if (valueN > valueM) return -1
+          else return 0
+        })
+
+        classDetail.students = students
+        this.classDetail = classDetail
+        wx.setNavigationBarTitle({title: this.classDetail.class_name})
+      } catch (e) {
+        console.log(e)
+        wx.hideLoading();
+        wx.showToast({ title: '网络通信错误！', icon: 'none', })
+      } finally {
+
+      }
+    },
+    toEditClass(){
+      wx.navigateTo({
+        url: '/pages/editClassDetail/main?' +
+        'classId=' + this.classId +
+        '&className=' + this.classDetail.class_name +
+        '&classYear=' + this.classDetail.class_year +
+        '&classGrade=' + this.classDetail.grade_id
+      })
+    },
+    async delClass(){
+      let ok = await syncFun.showModal({
+        title: '确认删除',
+        content: '是否确认删除班级？',
+        showCancel: true,
+        confirmColor: '#009efa'
+      })
+      if (ok.confirm){
+        try {
+          wx.showLoading({title: '删除中...', mask: true})
+          let ret = await syncFun.request({
+            url: this.globalData.apiBaseUrl + '/teacher/sclass/del?token=' + this.globalData.token,
+            data: {class_id: this.classId},
+            method: 'POST'
+          })
+          wx.hideLoading();
+          if (ret.data.retCode !== 0) {
+            wx.showToast({ title: ret.data.retMsg, icon: 'none', })
+            return
+          }
+          await syncFun.showModal({
+            title: '删除成功',
+            content: ret.data.retMsg,
+            showCancel: false,
+            confirmColor: '#009efa'
+          })
+          wx.navigateBack({delta: 1})
+
+        } catch (e) {
+          console.log(e)
+          wx.hideLoading();
+          wx.showToast({ title: '网络通信错误！', icon: 'none', })
+        } finally {
+
+        }
+
+      }
+    },
+    toAddStudent(){
+      wx.navigateTo({ url: '/pages/addStudent/main?' + 'classId=' + this.classId })
+    }
+  },
+  onShow(){
+    console.log('onShow')
+    this.classId = this.$root.$mp.query.hasOwnProperty('classId') ? this.$root.$mp.query.classId : null
+    this.getClassDetail()
+  },
+  onLoad () {
+    this.STATIC_URL = this.globalData.staticBaseUrl
+  },
+  onUnload(){
+    this.classId = 0
+    this.classDetail = null
+  }
+}
+</script>
+
+<style scoped>
+  .container{
+    margin: 0 10px;
+  }
+  .btn-group{
+    display: flex; display: -webkit-flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .btn-group .btn{
+    height: 40px;
+    flex: 1;
+    border-style: solid;
+    border-color: #fff;
+    border-width: 1rpx;
+    line-height: 40px;
+    margin-top: 10px;
+  }
+  .student-list{
+    margin-top: 10px;
+    width: 100%;
+  }
+  .tips-title .text2{
+    flex: 1;
+    text-align: right;
+  }
+  .student-avatar{
+    width: 25px;
+    height: 25px;
+    margin-top: 5rpx;
+  }
+  .td{
+    flex: 1;
+  }
+  .student-name{
+
+  }
+
+</style>

@@ -1,0 +1,173 @@
+<import src="/teacher.weapp/src/components/textToFixed.vue.wxml" /><template name="09c51852">
+  <view class="_div data-v-7801ab68 container" wx:if="{{detailLoaded}}">
+    <view class="_div data-v-7801ab68 navbar" wx:if="{{classDetail.homework_info.homework_count > 0}}">
+      <view class="_div data-v-7801ab68 navbar-item {{[currentIdx == 0 ? 'item_on' : '']}}" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+        <view class="_view data-v-7801ab68 navbar-title">作业情况</view>
+      </view>
+      <view class="_div data-v-7801ab68 navbar-item {{[currentIdx == 1 ? 'item_on' : '']}}" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">
+        <view class="_view data-v-7801ab68 navbar-title">答题得分</view>
+      </view>
+      <view class="_div data-v-7801ab68 navbar-item {{[currentIdx == 2 ? 'item_on' : '']}}" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">
+        <view class="_view data-v-7801ab68 navbar-title">学生详情</view>
+      </view>
+    </view>
+    <view class="_div data-v-7801ab68 tab-finish" wx:if="{{currentIdx ==0 && classDetail.homework_info.homework_count > 0}}">
+      <view class="_div data-v-7801ab68">
+        <view class="_div data-v-7801ab68 f14 mt5">已完成作业总次数：{{classDetail.homework_info.homework_count}}</view>
+        <view class="_div data-v-7801ab68 f14 mt5"> 班平均作业完成度：<template data="{{...$root[$kk+'0'], $root}}" is="1316dc2e"></template>% <label bindtap="handleProxy" class="_span data-v-7801ab68 c-primary ml5" data-eventid="{{'3'}}" data-comkey="{{$k}}">（{{showFinishDesc ? '收起': '查看'}}说明）</label></view>
+        <view class="_div data-v-7801ab68 f14 mt5 tab-desc" hidden="{{!(showFinishDesc)}}">
+          <view class="_div data-v-7801ab68 mt5"><label class="_span data-v-7801ab68 fb">作业完成：</label>学生在规定时间内完成作业</view>
+          <view class="_div data-v-7801ab68 mt10"><label class="_span data-v-7801ab68 fb">单份作业的完成度：</label>指的是完成人数占总人数比。例如：给50人布置，49人按时完成，则完成度为98.00%</view>
+          <view class="_div data-v-7801ab68 mt10"><label class="_span data-v-7801ab68 fb">班平均作业完成度：</label>指的是所有“单份作业完成度”的平均值（不含已删除的作业）</view>
+        </view>
+      </view>
+      <view class="_div data-v-7801ab68 warp-line mt10"></view>
+      <view class="_div data-v-7801ab68 mt10 time-range" wx:if="{{finishTimeRangeType===1}}">
+        <view class="_div data-v-7801ab68 radio-btn-group">
+          <view class="_div data-v-7801ab68 radio-btn {{[finishTimeRangeStart == '30' ? 'select' : '']}}" bindtap="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}">近30天</view>
+          <view class="_div data-v-7801ab68 radio-btn {{[finishTimeRangeStart == '60' ? 'select' : '']}}" bindtap="handleProxy" data-eventid="{{'5'}}" data-comkey="{{$k}}">近60天</view>
+          <view class="_div data-v-7801ab68 radio-btn {{[finishTimeRangeStart == '90' ? 'select' : '']}}" bindtap="handleProxy" data-eventid="{{'6'}}" data-comkey="{{$k}}">近90天</view>
+        </view>
+        <view class="_div data-v-7801ab68 radio-btn-group mt2">
+          <view class="_div data-v-7801ab68 radio-btn {{[finishTimeRangeStart == '180' ? 'select' : '']}}" bindtap="handleProxy" data-eventid="{{'7'}}" data-comkey="{{$k}}">近半年</view>
+          <view class="_div data-v-7801ab68 radio-btn {{[finishTimeRangeStart == '365' ? 'select' : '']}}" bindtap="handleProxy" data-eventid="{{'8'}}" data-comkey="{{$k}}">近1年</view>
+          <view class="_div data-v-7801ab68 radio-btn" bindtap="handleProxy" data-eventid="{{'9'}}" data-comkey="{{$k}}">其他</view>
+        </view>
+      </view>
+      <view wx:if="{{finishTimeRangeType===2}}" class="_div data-v-7801ab68 flex mt10 time-range time-range-select">
+        <view class="_div data-v-7801ab68 back-arrow" bindtap="handleProxy" data-eventid="{{'10'}}" data-comkey="{{$k}}">
+          <view class="_i data-v-7801ab68 iconfont icon-left"></view>
+        </view>
+        <view class="_div data-v-7801ab68">
+          <view class="_div data-v-7801ab68 flex"><label class="_span data-v-7801ab68 f16">开始日期：</label>
+            <picker mode="date" value="{{finishTimeRangeStart}}" bindchange="handleProxy" data-eventid="{{'11'}}" data-comkey="{{$k}}" class="_picker data-v-7801ab68">
+              <view class="_view data-v-7801ab68 picker f16">{{finishTimeRangeStart}}</view>
+            </picker>
+          </view>
+          <view class="_div data-v-7801ab68 flex mt5"><label class="_span data-v-7801ab68 f16">截止日期：</label>
+            <picker mode="date" value="{{finishTimeRangeEnd}}" bindchange="handleProxy" data-eventid="{{'12'}}" data-comkey="{{$k}}" class="_picker data-v-7801ab68">
+              <view class="_view data-v-7801ab68 picker f16">{{finishTimeRangeEnd}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class="_div data-v-7801ab68 ec-line" wx:if="{{!loading && finishDataNum > 0}}">
+        <view class="_div data-v-7801ab68 ec-div">
+          <ec-canvas class="_ec-canvas data-v-7801ab68 ec-canvas" ec="{{finishData}}"></ec-canvas>
+        </view>
+        <view class="_div data-v-7801ab68 f14 mt10" style="text-align: center">
+          <view class="_div data-v-7801ab68">{{finishTimeRangeStr}}</view>
+          <view class="_div data-v-7801ab68">作业完成度曲线</view>
+        </view>
+      </view>
+      <view class="_div data-v-7801ab68 no-class" wx:if="{{finishDataNum == 0}}">
+        <image src="/teacher.weapp/src/images/classAnalysisDetail/wushuju.png" class="_img data-v-7801ab68"></image>
+        <view class="_div data-v-7801ab68 add-class-tips">本时段内没有作业</view>
+        <view class="_div data-v-7801ab68 add-class-tips">请选择其他时间段</view>
+      </view>
+    </view>
+    <view class="_div data-v-7801ab68 tab-score" wx:if="{{currentIdx ==1 && classDetail.homework_info.homework_count > 0}}">
+      <view class="_div data-v-7801ab68">
+        <view class="_div data-v-7801ab68 f14 mt5">已完成作业总次数：{{classDetail.homework_info.homework_count}}</view>
+        <view class="_div data-v-7801ab68 f14 mt5"> 班平均答题得分率：<template data="{{...$root[$kk+'2'], $root}}" is="1316dc2e"></template>% <label bindtap="handleProxy" class="_span data-v-7801ab68 c-primary ml5" data-eventid="{{'13'}}" data-comkey="{{$k}}">（{{showScoreDesc ? '收起': '查看'}}说明）</label></view>
+        <view class="_div data-v-7801ab68 f14 mt5 tab-desc" hidden="{{!(showScoreDesc)}}">
+          <view class="_div data-v-7801ab68 mt5">这里是针对学生答题进行的统计（含未完成作业，不含已删除的）</view>
+          <view class="_div data-v-7801ab68 mt5"><label class="_span data-v-7801ab68 fb">单个学生单份作业答题得分率：</label>指一份作业里学生所做的题的得分与所做题的满分之间的比值</view>
+          <view class="_div data-v-7801ab68 mt10"><label class="_span data-v-7801ab68 fb">单份作业答题得分率：</label>一份作业，所有学生得分率的平均值</view>
+          <view class="_div data-v-7801ab68 mt10"><label class="_span data-v-7801ab68 fb">班平均答题得分率：</label>所有“单份作业答题得分率”的平均值</view>
+        </view>
+      </view>
+      <view class="_div data-v-7801ab68 warp-line mt10"></view>
+      <view class="_div data-v-7801ab68 mt10 time-range" wx:if="{{scoreTimeRangeType===1}}">
+        <view class="_div data-v-7801ab68 radio-btn-group">
+          <view class="_div data-v-7801ab68 radio-btn {{[scoreTimeRangeStart == '30' ? 'select' : '']}}" bindtap="handleProxy" data-eventid="{{'14'}}" data-comkey="{{$k}}">近30天</view>
+          <view class="_div data-v-7801ab68 radio-btn {{[scoreTimeRangeStart == '60' ? 'select' : '']}}" bindtap="handleProxy" data-eventid="{{'15'}}" data-comkey="{{$k}}">近60天</view>
+          <view class="_div data-v-7801ab68 radio-btn {{[scoreTimeRangeStart == '90' ? 'select' : '']}}" bindtap="handleProxy" data-eventid="{{'16'}}" data-comkey="{{$k}}">近90天</view>
+        </view>
+        <view class="_div data-v-7801ab68 radio-btn-group mt2">
+          <view class="_div data-v-7801ab68 radio-btn {{[scoreTimeRangeStart == '180' ? 'select' : '']}}" bindtap="handleProxy" data-eventid="{{'17'}}" data-comkey="{{$k}}">近半年</view>
+          <view class="_div data-v-7801ab68 radio-btn {{[scoreTimeRangeStart == '365' ? 'select' : '']}}" bindtap="handleProxy" data-eventid="{{'18'}}" data-comkey="{{$k}}">近1年</view>
+          <view class="_div data-v-7801ab68 radio-btn" bindtap="handleProxy" data-eventid="{{'19'}}" data-comkey="{{$k}}">其他</view>
+        </view>
+      </view>
+      <view wx:if="{{scoreTimeRangeType===2}}" class="_div data-v-7801ab68 flex mt10 time-range time-range-select">
+        <view class="_div data-v-7801ab68 back-arrow" bindtap="handleProxy" data-eventid="{{'20'}}" data-comkey="{{$k}}">
+          <view class="_i data-v-7801ab68 iconfont icon-left"></view>
+        </view>
+        <view class="_div data-v-7801ab68">
+          <view class="_div data-v-7801ab68 flex"><label class="_span data-v-7801ab68 f16">开始日期：</label>
+            <picker mode="date" value="{{scoreTimeRangeStart}}" bindchange="handleProxy" data-eventid="{{'21'}}" data-comkey="{{$k}}" class="_picker data-v-7801ab68">
+              <view class="_view data-v-7801ab68 picker f16">{{scoreTimeRangeStart}}</view>
+            </picker>
+          </view>
+          <view class="_div data-v-7801ab68 flex mt5"><label class="_span data-v-7801ab68 f16">截止日期：</label>
+            <picker mode="date" value="{{scoreTimeRangeEnd}}" bindchange="handleProxy" data-eventid="{{'22'}}" data-comkey="{{$k}}" class="_picker data-v-7801ab68">
+              <view class="_view data-v-7801ab68 picker f16">{{scoreTimeRangeEnd}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class="_div data-v-7801ab68 ec-line" wx:if="{{!loading && scoreDataNum > 0}}">
+        <view class="_div data-v-7801ab68 ec-div">
+          <ec-canvas class="_ec-canvas data-v-7801ab68 ec-canvas" ec="{{scoreData}}"></ec-canvas>
+        </view>
+        <view class="_div data-v-7801ab68 f14 mt10" style="text-align: center">
+          <view class="_div data-v-7801ab68">{{scoreTimeRangeStr}}</view>
+          <view class="_div data-v-7801ab68">作答得分率曲线</view>
+        </view>
+      </view>
+      <view class="_div data-v-7801ab68 no-class" wx:if="{{scoreDataNum == 0}}">
+        <image src="/teacher.weapp/src/images/classAnalysisDetail/wushuju.png" class="_img data-v-7801ab68"></image>
+        <view class="_div data-v-7801ab68 add-class-tips">本时段内没有作业</view>
+        <view class="_div data-v-7801ab68 add-class-tips">请选择其他时间段</view>
+      </view>
+    </view>
+    <view class="_div data-v-7801ab68 tab-student" wx:if="{{currentIdx ==2 && classDetail.homework_info.homework_count > 0}}">
+      <view class="_div data-v-7801ab68">
+        <view class="_div data-v-7801ab68 f14 mt5">（1）历次作答得分率的平均值</view>
+        <view class="_div data-v-7801ab68 f14 mt5">（2）点击蓝色数值查看得分率曲线</view>
+      </view>
+      <view class="_div data-v-7801ab68 student-list">
+        <view class="_div data-v-7801ab68 table">
+          <view class="_div data-v-7801ab68 thead">
+            <view class="_div data-v-7801ab68 tr">
+              <view class="_div data-v-7801ab68 td flex-center" style="width: 100px" bindtap="handleProxy" data-eventid="{{'23'}}" data-comkey="{{$k}}"> 备注姓名 <view class="_div data-v-7801ab68 sort-icon flex-center-column">
+                  <view class="_i data-v-7801ab68 sort-caret ascending {{[sortField === 'student_name' && sortBy === 'asc' ? 'primary' : '']}}"></view>
+                  <view class="_i data-v-7801ab68 sort-caret descending {{[sortField === 'student_name' && sortBy === 'desc' ? 'primary' : '']}}"></view>
+                </view>
+              </view>
+              <view class="_div data-v-7801ab68 td" style="width: 50px">头像</view>
+              <view class="_div data-v-7801ab68 td flex1 flex-center" bindtap="handleProxy" data-eventid="{{'24'}}" data-comkey="{{$k}}"> 作业完成度 <view class="_div data-v-7801ab68 sort-icon flex-center-column">
+                  <view class="_i data-v-7801ab68 sort-caret ascending {{[sortField === 'complete_rate' && sortBy === 'asc' ? 'primary' : '']}}"></view>
+                  <view class="_i data-v-7801ab68 sort-caret descending {{[sortField === 'complete_rate' && sortBy === 'desc' ? 'primary' : '']}}"></view>
+                </view>
+              </view>
+              <view class="_div data-v-7801ab68 td flex1 flex-center" bindtap="handleProxy" data-eventid="{{'25'}}" data-comkey="{{$k}}"> 作答得分率 <view class="_div data-v-7801ab68 sort-icon flex-center-column">
+                  <view class="_i data-v-7801ab68 sort-caret ascending {{[sortField === 'score_rate' && sortBy === 'asc' ? 'primary' : '']}}"></view>
+                  <view class="_i data-v-7801ab68 sort-caret descending {{[sortField === 'score_rate' && sortBy === 'desc' ? 'primary' : '']}}"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="_div data-v-7801ab68 tbody">
+            <view class="_div data-v-7801ab68 tr" wx:key="idx" key="{{idx}}" wx:for="{{studentList}}" wx:for-index="idx" wx:for-item="student">
+              <view class="_div data-v-7801ab68 td" style="width: 100px">{{student.student_name}}</view>
+              <view class="_div data-v-7801ab68 td" style="width: 50px" wx:if="{{student.user_avatar}}">
+                <image class="_img data-v-7801ab68 student-avatar" src="{{STATIC_URL + student.user_avatar + '?x-oss-process=image/resize,h_100'}}"></image>
+              </view>
+              <view class="_div data-v-7801ab68 td" style="width: 50px" wx:else>
+                <image class="_img data-v-7801ab68 student-avatar" src="/teacher.weapp/src/images/df_student.png"></image>
+              </view>
+              <view class="_div data-v-7801ab68 td flex1"><template data="{{...$root[$kk+'4_'+idx], $root}}" is="1316dc2e"></template>%</view>
+              <view class="_div data-v-7801ab68 td flex1 c-primary" bindtap="handleProxy" data-eventid="{{'26_'+idx}}" data-comkey="{{$k}}"><template data="{{...$root[$kk+'5_'+idx], $root}}" is="1316dc2e"></template>%</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-7801ab68 no-class" wx:if="{{classDetail.homework_info.homework_count == 0}}">
+      <image src="/teacher.weapp/src/images/classAnalysisDetail/wushuju.png" class="_img data-v-7801ab68"></image>
+      <view class="_div data-v-7801ab68 add-class-tips">本班学生完成作业后才会有数据哦～</view>
+    </view>
+  </view>
+</template>

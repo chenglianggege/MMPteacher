@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/home/main",
+
+    "pages/checkHomework/main",
+    "pages/classList/main",
+
+    "pages/classAnalysis/main",
+    "pages/classAnalysisDetail/main",
+
+    "pages/index/main",
+    "pages/editStudent/main",
+
+    "pages/classDetail/main",
+    "pages/personalSetting/main",
+    "pages/editTeacherPassword/main",
+    "pages/editTeacherPhone/main",
+    "pages/editTeacherName/main",
+
+    "pages/addStudentSuccess/main",
+    "pages/addStudent/main",
+
+    "pages/editClassDetail/main",
+    "pages/editClassSuccess/main",
+
+
+    "pages/homeworkDetail/main",
+
+    "pages/studentAnswer/main",
+
+    "pages/paper/main",
+
+    "pages/test/main",
+    "pages/publishSuccess/main",
+    "pages/publish/main",
+    "pages/publishConfirm/main",
+
+    "pages/editHomework/main",
+
+    "pages/forget/main"
+
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#009efa",
+    "navigationBarTitleText": "英语说-教师端",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": false
+  }
+}
